@@ -14,6 +14,7 @@
 		BE0E5C72198CA26700395741 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE0E5C71198CA26700395741 /* Images.xcassets */; };
 		BE0E5C7E198CA26700395741 /* ThreadsExperimentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C7D198CA26700395741 /* ThreadsExperimentTests.swift */; };
 		BE0E5C8B198CD7F400395741 /* GrayScottSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */; };
+		BE623416198D524000C0A592 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623415198D524000C0A592 /* CGFloatExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		BE0E5C7C198CA26700395741 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE0E5C7D198CA26700395741 /* ThreadsExperimentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsExperimentTests.swift; sourceTree = "<group>"; };
 		BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayScottSolver.swift; sourceTree = "<group>"; };
+		BE623415198D524000C0A592 /* CGFloatExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		BE0E5C64198CA26700395741 /* ThreadsExperiment */ = {
 			isa = PBXGroup;
 			children = (
+				BE623414198D522D00C0A592 /* extensions */,
 				BE0E5C89198CD7B200395741 /* grayScottOperations */,
 				BE0E5C67198CA26700395741 /* AppDelegate.swift */,
 				BE0E5C6C198CA26700395741 /* ViewController.swift */,
@@ -121,6 +124,14 @@
 				BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */,
 			);
 			name = grayScottOperations;
+			sourceTree = "<group>";
+		};
+		BE623414198D522D00C0A592 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BE623415198D524000C0A592 /* CGFloatExtension.swift */,
+			);
+			name = extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE0E5C6D198CA26700395741 /* ViewController.swift in Sources */,
+				BE623416198D524000C0A592 /* CGFloatExtension.swift in Sources */,
 				BE0E5C6B198CA26700395741 /* ThreadsExperiment.xcdatamodeld in Sources */,
 				BE0E5C68198CA26700395741 /* AppDelegate.swift in Sources */,
 				BE0E5C8B198CD7F400395741 /* GrayScottSolver.swift in Sources */,
@@ -415,6 +427,7 @@
 				BE0E5C83198CA26700395741 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BE0E5C84198CA26700395741 /* Build configuration list for PBXNativeTarget "ThreadsExperimentTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +436,7 @@
 				BE0E5C86198CA26700395741 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

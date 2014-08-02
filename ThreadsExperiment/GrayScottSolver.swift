@@ -24,15 +24,15 @@ class GrayScottSolver : NSOperation
         {
             for j in 1 ..< arrayLength - 1
             {
-                let f = 0.035;
-                let k = 0.064;
-                let dU = 0.082;
-                let dV = 0.041;
+                let f : CGFloat = 0.035;
+                let k : CGFloat = 0.064;
+                let dU : CGFloat = 0.032;
+                let dV : CGFloat = 0.041;
                 
                 let thisPixel = grayScottData[i][j];
                 let northPixel = grayScottData[i][j + 1];
                 let southPixel = grayScottData[i][j - 1];
-                let eastPixel = grayScottData[i + 1][j];
+                let eastPixel = grayScottData[i - 1][j];
                 let westPixel = grayScottData[i + 1][j];
 
                 let laplacianU = northPixel.0 + southPixel.0 + westPixel.0 + eastPixel.0 - (4.0 * thisPixel.0);
@@ -41,7 +41,7 @@ class GrayScottSolver : NSOperation
                 let deltaU = dU * laplacianU - thisPixel.0 * thisPixel.1 * thisPixel.1 + f * (1.0 - thisPixel.0);
                 let deltaV = dV * laplacianV + thisPixel.0 * thisPixel.1 * thisPixel.1 - (f + k) - thisPixel.1;
                 
-                grayScottData[i][j] = (thisPixel.0 + deltaU, thisPixel.1 + deltaV);
+                grayScottData[i][j] = ((thisPixel.0 + deltaU).clip(), (thisPixel.1 + deltaV).clip());
             }
         }
     }
