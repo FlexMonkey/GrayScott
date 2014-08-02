@@ -56,10 +56,18 @@ class ViewController: UIViewController
 
         imageView.image = image;
 
-     
+        let queue = NSOperationQueue();
+        let solver : GrayScottSolver = GrayScottSolver();
+        solver.setGrayScott(100)
+        queue.addOperation(solver);
+        solver.threadPriority = 0;
+        solver.completionBlock = {self.didSolve(solver.getGrayScott())};
     }
 
-    
+    private func didSolve(xyz : Int)
+    {
+        println( xyz)
+    }
  
     /*
     override func update(currentTime: CFTimeInterval)

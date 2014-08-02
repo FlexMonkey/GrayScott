@@ -13,6 +13,7 @@
 		BE0E5C70198CA26700395741 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE0E5C6E198CA26700395741 /* Main.storyboard */; };
 		BE0E5C72198CA26700395741 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE0E5C71198CA26700395741 /* Images.xcassets */; };
 		BE0E5C7E198CA26700395741 /* ThreadsExperimentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C7D198CA26700395741 /* ThreadsExperimentTests.swift */; };
+		BE0E5C8B198CD7F400395741 /* GrayScottSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		BE0E5C77198CA26700395741 /* ThreadsExperimentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThreadsExperimentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE0E5C7C198CA26700395741 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE0E5C7D198CA26700395741 /* ThreadsExperimentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsExperimentTests.swift; sourceTree = "<group>"; };
+		BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayScottSolver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		BE0E5C64198CA26700395741 /* ThreadsExperiment */ = {
 			isa = PBXGroup;
 			children = (
+				BE0E5C89198CD7B200395741 /* grayScottOperations */,
 				BE0E5C67198CA26700395741 /* AppDelegate.swift */,
 				BE0E5C6C198CA26700395741 /* ViewController.swift */,
 				BE0E5C6E198CA26700395741 /* Main.storyboard */,
@@ -110,6 +113,14 @@
 				BE0E5C7C198CA26700395741 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BE0E5C89198CD7B200395741 /* grayScottOperations */ = {
+			isa = PBXGroup;
+			children = (
+				BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */,
+			);
+			name = grayScottOperations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +225,7 @@
 				BE0E5C6D198CA26700395741 /* ViewController.swift in Sources */,
 				BE0E5C6B198CA26700395741 /* ThreadsExperiment.xcdatamodeld in Sources */,
 				BE0E5C68198CA26700395741 /* AppDelegate.swift in Sources */,
+				BE0E5C8B198CD7F400395741 /* GrayScottSolver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
