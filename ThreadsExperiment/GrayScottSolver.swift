@@ -14,23 +14,46 @@ import SpriteKit
 
 class GrayScottSolver : NSOperation
 {
-    private var grayScott : Int = 0;
+    private var grayScottData = Array<Array<(CGFloat,CGFloat)>>();
     
     override func main() -> ()
     {
-        println("hello from solver");
-        println(grayScott);
-        println("----");
+        let arrayLength = grayScottData.count;
+        
+        for i in 1 ..< arrayLength - 1
+        {
+            for j in 1 ..< arrayLength - 1
+            {
+                let f = 0.035;
+                let k = 0.064;
+                let dU = 0.082;
+                let dV = 0.041;
+                
+                let thisPixel = grayScottData[i][j];
+                let northPixel = grayScottData[i][j + 1];
+                let southPixel = grayScottData[i][j - 1];
+                let eastPixel = grayScottData[i + 1][j];
+                let westPixel = grayScottData[i + 1][j];
+
+                let laplacianU = northPixel.0 + southPixel.0 + westPixel.0 + eastPixel.0 - (4.0 * thisPixel.0);
+                let laplacianV = northPixel.1 + southPixel.1 + westPixel.1 + eastPixel.1 - (4.0 * thisPixel.1);
+                
+                let deltaU = dU * laplacianU - thisPixel.0 * thisPixel.1 * thisPixel.1 + f * (1.0 - thisPixel.0);
+                let deltaV = dV * laplacianV + thisPixel.0 * thisPixel.1 * thisPixel.1 - (f + k) - thisPixel.1;
+                
+                grayScottData[i][j] = (thisPixel.0 + deltaU, thisPixel.1 + deltaV);
+            }
+        }
     }
     
-    public func setGrayScott(value : Int)
+    public func setGrayScott(value : Array<Array<(CGFloat,CGFloat)>>)
     {
-        grayScott = value + 1;
+        grayScottData = value;
     }
     
-    public func getGrayScott() -> Int
+    public func getGrayScott() -> Array<Array<(CGFloat,CGFloat)>>
     {
-        return grayScott;
+        return grayScottData;
     }
 
 }

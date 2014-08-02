@@ -13,24 +13,26 @@ class ViewController: UIViewController
 {
     @IBOutlet var imageView: UIImageView!
     
-    let arraySide = 100;
-    var grayScottData = Array<Array<(CGFloat,CGFloat)>>()
+    let queue = NSOperationQueue();
+    var solver : GrayScottSolver = GrayScottSolver();
+    let arrayLength = 100;
+    var grayScottData = Array<Array<(CGFloat,CGFloat)>>();
 
     override func viewDidLoad()
     {
         super.viewDidLoad();
      
-        for column in 0..<arraySide
+        for column in 0..<arrayLength
         {
-            grayScottData.append(Array(count:arraySide, repeatedValue:(CGFloat(),CGFloat())))
+            grayScottData.append(Array(count:arrayLength, repeatedValue:(CGFloat(),CGFloat())))
         }
      
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: arraySide, height: arraySide), true, 1);
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: arrayLength, height: arrayLength), true, 1);
         let context = UIGraphicsGetCurrentContext();
         
-        for i in 0 ..< arraySide
+        for i in 0 ..< arrayLength
         {
-            for j in 0 ..< arraySide
+            for j in 0 ..< arrayLength
             {
                 var color : (CGFloat,CGFloat);
                 
@@ -56,34 +58,23 @@ class ViewController: UIViewController
 
         imageView.image = image;
 
-        let queue = NSOperationQueue();
-        let solver : GrayScottSolver = GrayScottSolver();
-        solver.setGrayScott(100)
-        queue.addOperation(solver);
-        solver.threadPriority = 0;
-        solver.completionBlock = {self.didSolve(solver.getGrayScott())};
+        solveGrayScott();
     }
 
-    private func didSolve(xyz : Int)
+    private func solveGrayScott()
     {
-        println( xyz)
+        solver = GrayScottSolver();
+        solver.setGrayScott(grayScottData)
+        queue.addOperation(solver);
+        solver.threadPriority = 0;
+        solver.completionBlock = {self.didSolve(self.solver.getGrayScott())};
     }
- 
-    /*
-    override func update(currentTime: CFTimeInterval)
-    {
-        for i in 1 ..< arraySide - 1
-        {
-            for j in 1 ..< arraySide - 1
-            {
-                let thisPixel = grayScottData[i][j];
-                let northPixel = grayScottData[i][j + 1];
-                let southPixel = grayScottData[i][j - 1];
-            }
-        }
-    }
-*/
     
+    private func didSolve(result : Array<Array<(CGFloat,CGFloat)>>)
+    {
+        solveGrayScott();
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
