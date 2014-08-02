@@ -7,12 +7,43 @@
 //
 
 import UIKit
+import SpriteKit
 
-class ViewController: UIViewController {
-                            
-    override func viewDidLoad() {
+class ViewController: UIViewController
+{
+    @IBOutlet var imageView: UIImageView!
+
+    let arraySide = 100;
+    var grayScottData = Array<Array<Float>>()
+
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+     
+        for column in 0..<arraySide
+        {
+            grayScottData.append(Array(count:arraySide, repeatedValue:Float()))
+        }
+        
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: arraySide, height: arraySide), true, 1);
+        
+        let context = UIGraphicsGetCurrentContext();
+  
+        CGContextSetRGBFillColor (context, 1, 1, 0, 1)
+        CGContextFillRect (context, CGRectMake (0, 0, 200, 200))
+        CGContextSetRGBFillColor (context, 1, 0, 0, 1)
+        CGContextFillRect (context, CGRectMake (0, 0, 100, 100))
+        CGContextSetRGBFillColor (context, 1, 1, 0, 1)
+        CGContextFillRect (context, CGRectMake (0, 0, 50, 50))
+        CGContextSetRGBFillColor (context, 0, 0, 1, 0.5);
+        CGContextFillRect (context, CGRectMake (0, 0, 50, 100))
+
+        
+        var image = UIGraphicsGetImageFromCurrentImageContext();
+        
+        var texture = SKTexture(image: image)
+
+        imageView.image = image;
     }
 
     override func didReceiveMemoryWarning() {
