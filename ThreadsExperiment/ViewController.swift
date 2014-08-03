@@ -15,22 +15,16 @@ class ViewController: UIViewController
     @IBOutlet var label: UILabel!
     @IBOutlet var uiView: UIView!
     @IBOutlet var slider: UISlider!
-    @IBOutlet var labelTwo: UILabel!
     
     let queue = NSOperationQueue();
     var solver : GrayScottSolver = GrayScottSolver();
+    var renderer : GrayScottRenderer = GrayScottRenderer();
     let arrayLength = 100;
     var grayScottData = Array<Array<(CGFloat,CGFloat)>>();
     
-    @IBAction func actionChanged(sender: AnyObject)
-    {
-        labelTwo.text = NSString(format: "%.5f", slider.value );
-    }
-    
+
     override func viewDidLoad()
     {
-        queue.maxConcurrentOperationCount = 1;
-
         for column in 0..<arrayLength
         {
             grayScottData.append(Array(count:arrayLength, repeatedValue:(CGFloat(),CGFloat())))
@@ -42,13 +36,13 @@ class ViewController: UIViewController
             {
                 var color : (CGFloat,CGFloat);
                 
-                if arc4random() % 10 > 8 || ((i > 35 && i < 65) && (j > 35 && j < 65) && arc4random() % 10 > 2)
+                if arc4random() % 10 > 8 || ((i > 35 && i < 65) && (j > 35 && j < 65) && arc4random() % 100 > 3)
                 {
-                    color = (CGFloat(0.2), CGFloat(0.9));
+                    color = (CGFloat(0.5), CGFloat(0.25));
                 }
                 else
                 {
-                    color = (CGFloat(0.9), CGFloat(0.2));
+                    color = (CGFloat(1.0), CGFloat(0.0));
                 }
                 
                 grayScottData[i][j] = color;
@@ -66,6 +60,10 @@ class ViewController: UIViewController
         {
             grayScottData = solver.getGrayScott();
             solveGrayScott();
+        }
+        
+        if(renderer.finished)
+        {
             renderGrayScott();
         }
     }
@@ -75,39 +73,25 @@ class ViewController: UIViewController
         solver = GrayScottSolver();
         solver.setGrayScott(grayScottData);
         solver.threadPriority = 0;
+        
+        // this doesn't work because the completion block isn't executed in the main thread
         //solver.completionBlock = {self.didSolve(self.solver.getGrayScott())};
   
         queue.addOperation(solver);
-    }
-
-    /*
-    private func didSolve(result : Array<Array<(CGFloat,CGFloat)>>)
-    {
-        grayScottData = result;
         
-        renderGrayScott();
+        if !renderer.executing
+        {
+            renderer = GrayScottRenderer();
+            renderer.setGrayScott(grayScottData);
+            renderer.threadPriority = 0;
+            
+            queue.addOperation(renderer);
+        }
     }
-    */
 
     private func renderGrayScott()
     {
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: arrayLength, height: arrayLength), true, 1);
-        let context = UIGraphicsGetCurrentContext();
-
-        for i in 0 ..< arrayLength
-        {
-            for j in 0 ..< arrayLength
-            {
-                let grayScottCell = grayScottData[i][j];
-                
-                CGContextSetRGBFillColor (context, grayScottCell.0, grayScottCell.0, grayScottCell.1, 1);
-                CGContextFillRect (context, CGRectMake (CGFloat(i), CGFloat(j), 1, 1));
-            }
-        }
-        
-        imageView.image = UIGraphicsGetImageFromCurrentImageContext();
-
-        UIGraphicsEndImageContext();
+        imageView.image = renderer.getGrayScottImage();
     }
 
 }

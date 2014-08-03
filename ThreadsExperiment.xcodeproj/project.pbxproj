@@ -15,6 +15,7 @@
 		BE0E5C7E198CA26700395741 /* ThreadsExperimentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C7D198CA26700395741 /* ThreadsExperimentTests.swift */; };
 		BE0E5C8B198CD7F400395741 /* GrayScottSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */; };
 		BE623416198D524000C0A592 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623415198D524000C0A592 /* CGFloatExtension.swift */; };
+		BE623418198DFE2100C0A592 /* GrayScottRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* GrayScottRenderer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		BE0E5C7D198CA26700395741 /* ThreadsExperimentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsExperimentTests.swift; sourceTree = "<group>"; };
 		BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayScottSolver.swift; sourceTree = "<group>"; };
 		BE623415198D524000C0A592 /* CGFloatExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
+		BE623417198DFE2100C0A592 /* GrayScottRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayScottRenderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */,
+				BE623417198DFE2100C0A592 /* GrayScottRenderer.swift */,
 			);
 			name = grayScottOperations;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE0E5C6D198CA26700395741 /* ViewController.swift in Sources */,
+				BE623418198DFE2100C0A592 /* GrayScottRenderer.swift in Sources */,
 				BE623416198D524000C0A592 /* CGFloatExtension.swift in Sources */,
 				BE0E5C6B198CA26700395741 /* ThreadsExperiment.xcdatamodeld in Sources */,
 				BE0E5C68198CA26700395741 /* AppDelegate.swift in Sources */,

@@ -10,7 +10,6 @@
 
 import Foundation
 import UIKit
-import SpriteKit
 
 class GrayScottSolver : NSOperation
 {
@@ -20,15 +19,15 @@ class GrayScottSolver : NSOperation
     {
         let arrayLength = grayScottData.count;
         
+        let f : CGFloat = 0.023;
+        let k : CGFloat = 0.077;
+        let dU : CGFloat = 0.16;
+        let dV : CGFloat = 0.08;
+        
         for i in 1 ..< arrayLength - 1
         {
             for j in 1 ..< arrayLength - 1
             {
-                let f : CGFloat = 0.035;
-                let k : CGFloat = 0.064;
-                let dU : CGFloat = 0.032;
-                let dV : CGFloat = 0.041;
-                
                 let thisPixel = grayScottData[i][j];
                 let northPixel = grayScottData[i][j + 1];
                 let southPixel = grayScottData[i][j - 1];
@@ -39,7 +38,7 @@ class GrayScottSolver : NSOperation
                 let laplacianV = northPixel.1 + southPixel.1 + westPixel.1 + eastPixel.1 - (4.0 * thisPixel.1);
                 
                 let deltaU = dU * laplacianU - thisPixel.0 * thisPixel.1 * thisPixel.1 + f * (1.0 - thisPixel.0);
-                let deltaV = dV * laplacianV + thisPixel.0 * thisPixel.1 * thisPixel.1 - (f + k) - thisPixel.1;
+                let deltaV = dV * laplacianV + thisPixel.0 * thisPixel.1 * thisPixel.1 - (k) * thisPixel.1;
                 
                 grayScottData[i][j] = ((thisPixel.0 + deltaU).clip(), (thisPixel.1 + deltaV).clip());
             }
