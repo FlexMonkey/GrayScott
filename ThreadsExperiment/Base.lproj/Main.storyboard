@@ -27,14 +27,29 @@
                                     <segment title="Du"/>
                                     <segment title="Dv"/>
                                 </segments>
+                                <connections>
+                                    <action selector="parametrButtonBarChangeHandler:" destination="BYZ-38-t0r" eventType="valueChanged" id="Cb8-Np-WEX"/>
+                                </connections>
                             </segmentedControl>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="apw-qo-0Qq">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.25" minValue="0.0" maxValue="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="apw-qo-0Qq">
                                 <rect key="frame" x="18" y="550" width="564" height="31"/>
+                                <connections>
+                                    <action selector="sliderValueChangeHandler:" destination="BYZ-38-t0r" eventType="valueChanged" id="75y-q8-2tr"/>
+                                </connections>
                             </slider>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m09-oT-ddF">
+                                <rect key="frame" x="20" y="515" width="560" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="apw-qo-0Qq" firstAttribute="top" secondItem="m09-oT-ddF" secondAttribute="bottom" constant="40" id="3SV-2g-0oc"/>
+                            <constraint firstItem="apw-qo-0Qq" firstAttribute="top" secondItem="m09-oT-ddF" secondAttribute="bottom" constant="20" id="8mU-ZJ-7fQ"/>
+                            <constraint firstAttribute="trailing" secondItem="m09-oT-ddF" secondAttribute="trailing" constant="20" id="AVH-XU-iTZ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="apw-qo-0Qq" secondAttribute="bottom" constant="20" id="Dtf-xB-KiY"/>
                             <constraint firstItem="apw-qo-0Qq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="FkE-2D-VW7"/>
                             <constraint firstAttribute="centerX" secondItem="A6b-zD-3rc" secondAttribute="centerX" id="GHs-r4-LnY"/>
@@ -44,12 +59,16 @@
                             <constraint firstItem="9Je-Qr-dH5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="VrZ-Io-PF1"/>
                             <constraint firstAttribute="centerX" secondItem="A6b-zD-3rc" secondAttribute="centerX" id="WNt-WR-kqc"/>
                             <constraint firstItem="9Je-Qr-dH5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="Yrc-mN-YHl"/>
+                            <constraint firstItem="m09-oT-ddF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="ZGg-oO-Z4S"/>
                             <constraint firstAttribute="centerY" secondItem="A6b-zD-3rc" secondAttribute="centerY" id="cGB-B5-GoF"/>
                             <constraint firstAttribute="trailing" secondItem="apw-qo-0Qq" secondAttribute="trailing" constant="20" id="tjm-NH-8kG"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="A6b-zD-3rc" id="9hl-6Q-Chg"/>
+                        <outlet property="parameterButtonBar" destination="9Je-Qr-dH5" id="UDb-43-qdh"/>
+                        <outlet property="parameterSlider" destination="apw-qo-0Qq" id="6HK-Nk-xB2"/>
+                        <outlet property="parameterValueLabel" destination="m09-oT-ddF" id="7zw-Sv-LB3"/>
                         <outlet property="uiView" destination="8bC-Xf-vdC" id="0AD-6X-e9d"/>
                     </connections>
                 </viewController>

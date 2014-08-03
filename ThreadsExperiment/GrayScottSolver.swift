@@ -19,17 +19,17 @@ class GrayScottSolver : NSOperation
 {
     private var grayScottData = Array<(CGFloat,CGFloat)>();
     
+    private var f : CGFloat?;
+    private var k : CGFloat?;
+    private var dU : CGFloat?;
+    private var dV : CGFloat?;
+    
     override func main() -> ()
     {
         let startTime : CFAbsoluteTime = CFAbsoluteTimeGetCurrent();
         
         let arrayLength = 70;
-        
-        let f : CGFloat = 0.023;
-        let k : CGFloat = 0.077;
-        let dU : CGFloat = 0.16;
-        let dV : CGFloat = 0.08;
-        
+
         var outputArray = Array<(CGFloat,CGFloat)>();
         
         for i in 0 ..< arrayLength
@@ -46,8 +46,8 @@ class GrayScottSolver : NSOperation
                 let laplacianV = northPixel.1 + southPixel.1 + westPixel.1 + eastPixel.1 - (4.0 * thisPixel.1);
                 let reactionRate = thisPixel.0 * thisPixel.1 * thisPixel.1;
                 
-                let deltaU = dU * laplacianU - reactionRate + f * (1.0 - thisPixel.0);
-                let deltaV = dV * laplacianV + reactionRate - (k) * thisPixel.1;
+                let deltaU = dU! * laplacianU - reactionRate + f! * (1.0 - thisPixel.0);
+                let deltaV = dV! * laplacianV + reactionRate - k! * thisPixel.1;
                 
                 let outputPixel = ((thisPixel.0 + deltaU).clip(), (thisPixel.1 + deltaV).clip());
 
@@ -58,6 +58,14 @@ class GrayScottSolver : NSOperation
         grayScottData = outputArray;
         
         println("GrayScottSolver:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime));
+    }
+    
+    public func setParameterValues(#f: CGFloat, k : CGFloat, dU : CGFloat, dV : CGFloat)
+    {
+        self.f = f;
+        self.k = k;
+        self.dU = dU;
+        self.dV = dV;
     }
     
     public func setGrayScott(value : Array<(CGFloat,CGFloat)>)
