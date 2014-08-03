@@ -7,50 +7,65 @@
 //
 // Thanks to: http://tetontech.wordpress.com/2014/06/03/swift-ios-and-threading/
 //
+//  Karlm Sims on Gray Scott: http://www.karlsims.com/rd.html
+//  My work with reaction diffusion: http://flexmonkey.blogspot.co.uk/search/label/Reaction%E2%80%93diffusion
+//
 
 import Foundation
 import UIKit
+import CoreImage
 
 class GrayScottSolver : NSOperation
 {
-    private var grayScottData = Array<Array<(CGFloat,CGFloat)>>();
+    private var grayScottData = Array<(CGFloat,CGFloat)>();
     
     override func main() -> ()
     {
-        let arrayLength = grayScottData.count;
+        let startTime : CFAbsoluteTime = CFAbsoluteTimeGetCurrent();
+        
+        let arrayLength = 70;
         
         let f : CGFloat = 0.023;
         let k : CGFloat = 0.077;
         let dU : CGFloat = 0.16;
         let dV : CGFloat = 0.08;
         
-        for i in 1 ..< arrayLength - 1
+        var outputArray = Array<(CGFloat,CGFloat)>();
+        
+        for i in 0 ..< arrayLength
         {
-            for j in 1 ..< arrayLength - 1
+            for j in 0 ..< arrayLength
             {
-                let thisPixel = grayScottData[i][j];
-                let northPixel = grayScottData[i][j + 1];
-                let southPixel = grayScottData[i][j - 1];
-                let eastPixel = grayScottData[i - 1][j];
-                let westPixel = grayScottData[i + 1][j];
+                var thisPixel = grayScottData[i * arrayLength + j];
+                let northPixel = grayScottData[i * arrayLength + (j + 1).wrap(69)];
+                let southPixel = grayScottData[i * arrayLength + (j - 1).wrap(69)];
+                let eastPixel = grayScottData[(i - 1).wrap(69) * arrayLength + j];
+                let westPixel = grayScottData[(i + 1).wrap(69) * arrayLength + j];
 
                 let laplacianU = northPixel.0 + southPixel.0 + westPixel.0 + eastPixel.0 - (4.0 * thisPixel.0);
                 let laplacianV = northPixel.1 + southPixel.1 + westPixel.1 + eastPixel.1 - (4.0 * thisPixel.1);
+                let reactionRate = thisPixel.0 * thisPixel.1 * thisPixel.1;
                 
-                let deltaU = dU * laplacianU - thisPixel.0 * thisPixel.1 * thisPixel.1 + f * (1.0 - thisPixel.0);
-                let deltaV = dV * laplacianV + thisPixel.0 * thisPixel.1 * thisPixel.1 - (k) * thisPixel.1;
+                let deltaU = dU * laplacianU - reactionRate + f * (1.0 - thisPixel.0);
+                let deltaV = dV * laplacianV + reactionRate - (k) * thisPixel.1;
                 
-                grayScottData[i][j] = ((thisPixel.0 + deltaU).clip(), (thisPixel.1 + deltaV).clip());
+                let outputPixel = ((thisPixel.0 + deltaU).clip(), (thisPixel.1 + deltaV).clip());
+
+                outputArray.append(outputPixel);
             }
         }
+
+        grayScottData = outputArray;
+        
+        println("GrayScottSolver:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime));
     }
     
-    public func setGrayScott(value : Array<Array<(CGFloat,CGFloat)>>)
+    public func setGrayScott(value : Array<(CGFloat,CGFloat)>)
     {
         grayScottData = value;
     }
-    
-    public func getGrayScott() -> Array<Array<(CGFloat,CGFloat)>>
+
+    public func getGrayScott() -> Array<(CGFloat,CGFloat)>
     {
         return grayScottData;
     }

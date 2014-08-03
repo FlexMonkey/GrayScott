@@ -16,24 +16,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A6b-zD-3rc">
-                                <rect key="frame" x="200" y="200" width="200" height="200"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A6b-zD-3rc">
+                                <rect key="frame" x="150" y="150" width="300" height="300"/>
                             </imageView>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="APp-Mb-AE0">
-                                <rect key="frame" x="198" y="87" width="204" height="31"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9Je-Qr-dH5">
+                                <rect key="frame" x="20" y="36" width="560" height="29"/>
+                                <segments>
+                                    <segment title="f"/>
+                                    <segment title="k"/>
+                                    <segment title="Du"/>
+                                    <segment title="Dv"/>
+                                </segments>
+                            </segmentedControl>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="apw-qo-0Qq">
+                                <rect key="frame" x="18" y="550" width="564" height="31"/>
                             </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="apw-qo-0Qq" secondAttribute="bottom" constant="20" id="Dtf-xB-KiY"/>
+                            <constraint firstItem="apw-qo-0Qq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="FkE-2D-VW7"/>
+                            <constraint firstAttribute="centerX" secondItem="A6b-zD-3rc" secondAttribute="centerX" id="GHs-r4-LnY"/>
+                            <constraint firstAttribute="trailing" secondItem="9Je-Qr-dH5" secondAttribute="trailing" constant="20" id="HFb-fE-pJO"/>
+                            <constraint firstAttribute="centerX" secondItem="A6b-zD-3rc" secondAttribute="centerX" id="VOW-3R-rKm"/>
+                            <constraint firstAttribute="centerY" secondItem="A6b-zD-3rc" secondAttribute="centerY" id="VRa-et-g5J"/>
+                            <constraint firstItem="9Je-Qr-dH5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="VrZ-Io-PF1"/>
+                            <constraint firstAttribute="centerX" secondItem="A6b-zD-3rc" secondAttribute="centerX" id="WNt-WR-kqc"/>
+                            <constraint firstItem="9Je-Qr-dH5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="Yrc-mN-YHl"/>
+                            <constraint firstAttribute="centerY" secondItem="A6b-zD-3rc" secondAttribute="centerY" id="cGB-B5-GoF"/>
+                            <constraint firstAttribute="trailing" secondItem="apw-qo-0Qq" secondAttribute="trailing" constant="20" id="tjm-NH-8kG"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="A6b-zD-3rc" id="9hl-6Q-Chg"/>
-                        <outlet property="slider" destination="APp-Mb-AE0" id="SoE-xo-eUD"/>
                         <outlet property="uiView" destination="8bC-Xf-vdC" id="0AD-6X-e9d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="41" y="178"/>
         </scene>
     </scenes>
 </document>

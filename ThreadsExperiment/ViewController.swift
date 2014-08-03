@@ -12,31 +12,24 @@ import SpriteKit
 class ViewController: UIViewController
 {
     @IBOutlet var imageView: UIImageView!
-    @IBOutlet var label: UILabel!
     @IBOutlet var uiView: UIView!
-    @IBOutlet var slider: UISlider!
     
     let queue = NSOperationQueue();
     var solver : GrayScottSolver = GrayScottSolver();
     var renderer : GrayScottRenderer = GrayScottRenderer();
-    let arrayLength = 100;
-    var grayScottData = Array<Array<(CGFloat,CGFloat)>>();
-    
+    let arrayLength = 70;
 
+    var grayScottData = Array<(CGFloat,CGFloat)>(count: 70 * 70, repeatedValue: (CGFloat(1.0), CGFloat(0.0))  );
+ 
     override func viewDidLoad()
     {
-        for column in 0..<arrayLength
-        {
-            grayScottData.append(Array(count:arrayLength, repeatedValue:(CGFloat(),CGFloat())))
-        }
-
         for i in 0 ..< arrayLength
         {
             for j in 0 ..< arrayLength
             {
                 var color : (CGFloat,CGFloat);
                 
-                if arc4random() % 10 > 8 || ((i > 35 && i < 65) && (j > 35 && j < 65) && arc4random() % 100 > 3)
+                if ((i > 25 && i < 45) && (j > 25 && j < 45) && arc4random() % 100 > 5)
                 {
                     color = (CGFloat(0.5), CGFloat(0.25));
                 }
@@ -45,7 +38,7 @@ class ViewController: UIViewController
                     color = (CGFloat(1.0), CGFloat(0.0));
                 }
                 
-                grayScottData[i][j] = color;
+                grayScottData[i * arrayLength + j] = color;
             }
         }
 
@@ -92,6 +85,7 @@ class ViewController: UIViewController
     private func renderGrayScott()
     {
         imageView.image = renderer.getGrayScottImage();
+     
     }
 
 }
