@@ -23,7 +23,7 @@ class ViewController: UIViewController
     let arrayLength = 70;
     
     var f : CGFloat = 0.023;
-    var k : CGFloat = 0.077;
+    var k : CGFloat = 0.0795;
     var dU : CGFloat = 0.16;
     var dV : CGFloat = 0.08;
 
@@ -114,6 +114,7 @@ class ViewController: UIViewController
     private func solveGrayScott()
     {
         solver = GrayScottSolver();
+    
         solver.setGrayScott(grayScottData);
         solver.setParameterValues(f: f, k: k, dU: dU, dV: dV)
         solver.threadPriority = 0;

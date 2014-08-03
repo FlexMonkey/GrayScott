@@ -36,7 +36,7 @@ class GrayScottSolver : NSOperation
         {
             for j in 0 ..< arrayLength
             {
-                var thisPixel = grayScottData[i * arrayLength + j];
+                let thisPixel = grayScottData[i * arrayLength + j];
                 let northPixel = grayScottData[i * arrayLength + (j + 1).wrap(69)];
                 let southPixel = grayScottData[i * arrayLength + (j - 1).wrap(69)];
                 let eastPixel = grayScottData[(i - 1).wrap(69) * arrayLength + j];
