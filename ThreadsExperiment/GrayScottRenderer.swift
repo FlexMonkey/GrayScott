@@ -24,11 +24,13 @@ class GrayScottRenderer : NSOperation
         UIGraphicsBeginImageContextWithOptions(CGSize(width: arrayLength, height: arrayLength), true, 1);
         let context = UIGraphicsGetCurrentContext();
         
+        let grayScottConstData = grayScottData;
+        
         for i in 0 ..< arrayLength
         {
             for j in 0 ..< arrayLength
             {
-                let grayScottCell = grayScottData[i * arrayLength + j];
+                let grayScottCell = grayScottConstData[i * arrayLength + j];
                 
                 CGContextSetRGBFillColor (context, grayScottCell.0, grayScottCell.0, grayScottCell.1, 1);
                 CGContextFillRect (context, CGRectMake (CGFloat(i), CGFloat(j), 1, 1));
@@ -42,12 +44,12 @@ class GrayScottRenderer : NSOperation
         println("GrayScottRenderer:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime));
     }
     
-    public func setGrayScott(value : Array<(CGFloat,CGFloat)>)
+    func setGrayScott(value : Array<(CGFloat,CGFloat)>)
     {
         grayScottData = value;
     }
     
-    public func getGrayScottImage() -> UIImage
+    func getGrayScottImage() -> UIImage
     {
         return grayScottImage;
     }
