@@ -31,7 +31,7 @@ class GrayScottSolver : NSOperation
         let arrayLength = 70;
 
         let grayScottConstData = grayScottData;
-        var outputArray = Array<(CGFloat,CGFloat)>(count: 70 * 70, repeatedValue: (CGFloat(1.0), CGFloat(0.0)) );
+        var outputArray = Array<(CGFloat,CGFloat)>(count: arrayLength * arrayLength, repeatedValue: (CGFloat(1.0), CGFloat(0.0)) );
      
         var index : Int = 0;
         
@@ -40,10 +40,10 @@ class GrayScottSolver : NSOperation
             for j in 0 ..< arrayLength
             {
                 let thisPixel = grayScottConstData[i * arrayLength + j];
-                let northPixel = grayScottConstData[i * arrayLength + (j + 1).wrap(69)];
-                let southPixel = grayScottConstData[i * arrayLength + (j - 1).wrap(69)];
-                let eastPixel = grayScottConstData[(i - 1).wrap(69) * arrayLength + j];
-                let westPixel = grayScottConstData[(i + 1).wrap(69) * arrayLength + j];
+                let northPixel = grayScottConstData[i * arrayLength + (j + 1).wrap(arrayLength - 1)];
+                let southPixel = grayScottConstData[i * arrayLength + (j - 1).wrap(arrayLength - 1)];
+                let eastPixel = grayScottConstData[(i - 1).wrap(arrayLength - 1) * arrayLength + j];
+                let westPixel = grayScottConstData[(i + 1).wrap(arrayLength - 1) * arrayLength + j];
 
                 let laplacianU = northPixel.0 + southPixel.0 + westPixel.0 + eastPixel.0 - (4.0 * thisPixel.0);
                 let laplacianV = northPixel.1 + southPixel.1 + westPixel.1 + eastPixel.1 - (4.0 * thisPixel.1);
@@ -54,9 +54,9 @@ class GrayScottSolver : NSOperation
                 
                 let outputPixel = ((thisPixel.0 + deltaU).clip(), (thisPixel.1 + deltaV).clip());
 
+                // setting values by subscripting is about 15% faster than append()!
                 //outputArray.append(outputPixel);
-                outputArray[index] = outputPixel; // setting values by subscripting is about 15% faster than append()!
-                index++;
+                outputArray[index++] = outputPixel;
             }
         }
 

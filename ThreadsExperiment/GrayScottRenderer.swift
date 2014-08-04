@@ -23,14 +23,12 @@ class GrayScottRenderer : NSOperation
         
         UIGraphicsBeginImageContextWithOptions(CGSize(width: arrayLength, height: arrayLength), true, 1);
         let context = UIGraphicsGetCurrentContext();
-        
-        let grayScottConstData = grayScottData;
-        
+
         for i in 0 ..< arrayLength
         {
             for j in 0 ..< arrayLength
             {
-                let grayScottCell = grayScottConstData[i * arrayLength + j];
+                let grayScottCell = grayScottData[i * arrayLength + j];
                 
                 CGContextSetRGBFillColor (context, grayScottCell.0, grayScottCell.0, grayScottCell.1, 1);
                 CGContextFillRect (context, CGRectMake (CGFloat(i), CGFloat(j), 1, 1));
