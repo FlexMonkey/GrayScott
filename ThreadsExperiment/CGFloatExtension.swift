@@ -26,4 +26,9 @@ extension CGFloat
             return self;
         }
     }
+    
+    func format() -> String
+    {
+        return NSString(format: "%.4f", Float(self));
+    }
 }

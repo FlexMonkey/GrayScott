@@ -95,16 +95,16 @@ class ViewController: UIViewController
         switch parameterButtonBar.selectedSegmentIndex
         {
             case 0:
-                parameterValueLabel.text = "f = " + NSString(format: "%.4f", Float(f));
+                parameterValueLabel.text = "f = " + f.format();
                 parameterSlider.value = Float(f);
             case 1:
-                parameterValueLabel.text = "k = " + NSString(format: "%.4f", Float(k));
+                parameterValueLabel.text = "k = " + k.format();
                 parameterSlider.value = Float(k);
             case 2:
-                parameterValueLabel.text = "Du = " + NSString(format: "%.4f", Float(dU));
+                parameterValueLabel.text = "Du = " + dU.format();
                 parameterSlider.value = Float(dU);
             case 3:
-                parameterValueLabel.text = "Dv = " + NSString(format: "%.4f", Float(dV));
+                parameterValueLabel.text = "Dv = " + dV.format();
                 parameterSlider.value = Float(dV);
             default:
                 parameterValueLabel.text = "";
