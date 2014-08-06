@@ -22,25 +22,29 @@ class ViewController: UIViewController
     var renderer : GrayScottRenderer = GrayScottRenderer();
     let arrayLength = 70;
     
-    var f : CGFloat = 0.023;
-    var k : CGFloat = 0.0795;
-    var dU : CGFloat = 0.16;
-    var dV : CGFloat = 0.08;
+    var f : Float = 0.023;
+    var k : Float = 0.0795;
+    var dU : Float = 0.16;
+    var dV : Float = 0.08;
 
-    var grayScottData = Array<(CGFloat,CGFloat)>(count: 70 * 70, repeatedValue: (CGFloat(1.0), CGFloat(0.0))  );
+    var grayScottData : NSMutableArray = NSMutableArray(capacity: 70 * 70);
  
     override func viewDidLoad()
     {
+        for i in 0..<70 * 70
+        {
+            grayScottData[i] = GrayScottStruct(u:1.0, v:0.0);
+        }
+     
+        // d'oh - prepop
+        
         for i in 25 ..< 45
         {
             for j in 25 ..< 45
             {
-                var color : (CGFloat,CGFloat);
-                
                 if arc4random() % 100 > 5
                 {
-                    color = (CGFloat(0.5), CGFloat(0.25));
-                    grayScottData[i * arrayLength + j] = color;
+                    grayScottData[i * arrayLength + j] = GrayScottStruct(u: 0.5, v: 0.25);
                 }
             }
         }
@@ -70,15 +74,15 @@ class ViewController: UIViewController
         switch parameterButtonBar.selectedSegmentIndex
         {
             case 0:
-                f = CGFloat(parameterSlider.value);
+                f = Float(parameterSlider.value);
             case 1:
-                k = CGFloat(parameterSlider.value);
+                k = Float(parameterSlider.value);
             case 2:
-                dU = CGFloat(parameterSlider.value);
+                dU = Float(parameterSlider.value);
             case 3:
-                dV = CGFloat(parameterSlider.value);
+                dV = Float(parameterSlider.value);
             default:
-                f = CGFloat(parameterSlider.value);
+                f = Float(parameterSlider.value);
         }
         
         updateLabel();
@@ -129,7 +133,7 @@ class ViewController: UIViewController
             renderer = GrayScottRenderer();
             renderer.setGrayScott(grayScottData);
             renderer.threadPriority = 0;
-            
+
             queue.addOperation(renderer);
         }
     }

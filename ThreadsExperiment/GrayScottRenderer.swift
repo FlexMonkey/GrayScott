@@ -12,7 +12,7 @@ import UIKit
 class GrayScottRenderer : NSOperation
 {
 
-    private var grayScottData = Array<(CGFloat,CGFloat)>();
+    private var grayScottData = NSMutableArray(capacity: 70 * 70);
     private var grayScottImage = UIImage();
     
     override func main() -> ()
@@ -28,9 +28,9 @@ class GrayScottRenderer : NSOperation
         {
             for j in 0 ..< arrayLength
             {
-                let grayScottCell = grayScottData[i * arrayLength + j];
+                let grayScottCell : GrayScottStruct = grayScottData[i * arrayLength + j] as GrayScottStruct;
                 
-                CGContextSetRGBFillColor (context, grayScottCell.0, grayScottCell.0, grayScottCell.1, 1);
+                CGContextSetRGBFillColor (context, CGFloat(grayScottCell.u), CGFloat(grayScottCell.u), CGFloat(grayScottCell.v), 1);
                 CGContextFillRect (context, CGRectMake (CGFloat(i), CGFloat(j), 1, 1));
             }
         }
@@ -42,7 +42,7 @@ class GrayScottRenderer : NSOperation
         println("GrayScottRenderer:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime));
     }
     
-    func setGrayScott(value : Array<(CGFloat,CGFloat)>)
+    func setGrayScott(value : NSMutableArray)
     {
         grayScottData = value;
     }

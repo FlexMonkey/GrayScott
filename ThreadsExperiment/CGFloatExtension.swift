@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-extension CGFloat
+extension Float
 {
-    func clip() -> CGFloat
+    func clip() -> Float
     {
         if self < 0
         {

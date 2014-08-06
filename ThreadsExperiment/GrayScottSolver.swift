@@ -17,12 +17,12 @@ import CoreImage
 
 class GrayScottSolver : NSOperation
 {
-    private var grayScottData = Array<(CGFloat,CGFloat)>();
+    private var grayScottData = NSMutableArray(capacity: 70 * 70);
     
-    private var f : CGFloat?;
-    private var k : CGFloat?;
-    private var dU : CGFloat?;
-    private var dV : CGFloat?;
+    private var f : Float?;
+    private var k : Float?;
+    private var dU : Float?;
+    private var dV : Float?;
     
     override func main() -> ()
     {
@@ -31,7 +31,7 @@ class GrayScottSolver : NSOperation
         let arrayLength = 70;
 
         let grayScottConstData = grayScottData;
-        var outputArray = Array<(CGFloat,CGFloat)>(count: arrayLength * arrayLength, repeatedValue: (CGFloat(1.0), CGFloat(0.0)) );
+        var outputArray = NSMutableArray(capacity: 70 * 70);
      
         var index : Int = 0;
         
@@ -39,20 +39,20 @@ class GrayScottSolver : NSOperation
         {
             for j in 0 ..< arrayLength
             {
-                let thisPixel = grayScottConstData[i * arrayLength + j];
-                let northPixel = grayScottConstData[i * arrayLength + (j + 1).wrap(arrayLength - 1)];
-                let southPixel = grayScottConstData[i * arrayLength + (j - 1).wrap(arrayLength - 1)];
-                let eastPixel = grayScottConstData[(i - 1).wrap(arrayLength - 1) * arrayLength + j];
-                let westPixel = grayScottConstData[(i + 1).wrap(arrayLength - 1) * arrayLength + j];
+                let thisPixel : GrayScottStruct! = grayScottConstData[i * arrayLength + j] as GrayScottStruct;
+                let northPixel : GrayScottStruct! = grayScottConstData[i * arrayLength + (j + 1).wrap(arrayLength - 1)] as GrayScottStruct;
+                let southPixel : GrayScottStruct! = grayScottConstData[i * arrayLength + (j - 1).wrap(arrayLength - 1)] as GrayScottStruct;
+                let eastPixel : GrayScottStruct! = grayScottConstData[(i - 1).wrap(arrayLength - 1) * arrayLength + j] as GrayScottStruct;
+                let westPixel : GrayScottStruct! = grayScottConstData[(i + 1).wrap(arrayLength - 1) * arrayLength + j] as GrayScottStruct;
 
-                let laplacianU = northPixel.0 + southPixel.0 + westPixel.0 + eastPixel.0 - (4.0 * thisPixel.0);
-                let laplacianV = northPixel.1 + southPixel.1 + westPixel.1 + eastPixel.1 - (4.0 * thisPixel.1);
-                let reactionRate = thisPixel.0 * thisPixel.1 * thisPixel.1;
+                let laplacianU = northPixel.u + southPixel.u + westPixel.u + eastPixel.u - (4.0 * thisPixel.u);
+                let laplacianV = northPixel.v + southPixel.v + westPixel.v + eastPixel.v - (4.0 * thisPixel.v);
+                let reactionRate = thisPixel.u * thisPixel.v * thisPixel.v;
                 
-                let deltaU = dU! * laplacianU - reactionRate + f! * (1.0 - thisPixel.0);
-                let deltaV = dV! * laplacianV + reactionRate - k! * thisPixel.1;
+                let deltaU : Float = dU! * laplacianU - reactionRate + f! * (1.0 - thisPixel.u);
+                let deltaV : Float = dV! * laplacianV + reactionRate - k! * thisPixel.v;
                 
-                let outputPixel = ((thisPixel.0 + deltaU).clip(), (thisPixel.1 + deltaV).clip());
+                let outputPixel = GrayScottStruct(u: Float(thisPixel.u + deltaU).clip(), v: Float(thisPixel.v + deltaV).clip());
 
                 // setting values by subscripting is about 15% faster than append()!
                 //outputArray.append(outputPixel);
@@ -65,7 +65,7 @@ class GrayScottSolver : NSOperation
         println("GrayScottSolver:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime));
     }
     
-    func setParameterValues(#f: CGFloat, k : CGFloat, dU : CGFloat, dV : CGFloat)
+    func setParameterValues(#f: Float, k : Float, dU : Float, dV : Float)
     {
         self.f = f;
         self.k = k;
@@ -73,12 +73,12 @@ class GrayScottSolver : NSOperation
         self.dV = dV;
     }
     
-    func setGrayScott(value : Array<(CGFloat,CGFloat)>)
+    func setGrayScott(value : NSMutableArray)
     {
         grayScottData = value;
     }
 
-    func getGrayScott() -> Array<(CGFloat,CGFloat)>
+    func getGrayScott() -> NSMutableArray
     {
         return grayScottData;
     }
