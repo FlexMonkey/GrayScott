@@ -20,23 +20,20 @@ class ViewController: UIViewController
     let queue = NSOperationQueue();
     var solver : GrayScottSolver?;
     var renderer : GrayScottRenderer?;
-    let arrayLength = 70;
     
     var f : Double = 0.023;
     var k : Double = 0.0795;
     var dU : Double = 0.16;
     var dV : Double = 0.08;
 
-    var grayScottData : NSMutableArray = NSMutableArray(capacity: 70 * 70);
+    var grayScottData : NSMutableArray = NSMutableArray(capacity: Constants.LENGTH_SQUARED);
  
     override func viewDidLoad()
     {
-        for i in 0..<70 * 70
+        for i in 0..<Constants.LENGTH_SQUARED
         {
             grayScottData[i] = GrayScottStruct(u:1.0, v:0.0);
         }
-     
-        // d'oh - prepop
         
         for i in 25 ..< 45
         {
@@ -44,7 +41,7 @@ class ViewController: UIViewController
             {
                 if arc4random() % 100 > 5
                 {
-                    grayScottData[i * arrayLength + j] = GrayScottStruct(u: 0.5, v: 0.25);
+                    grayScottData[i * Constants.LENGTH + j] = GrayScottStruct(u: 0.5, v: 0.25);
                 }
             }
         }

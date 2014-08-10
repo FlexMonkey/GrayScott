@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E7AECD81997E5FE00EFC5EC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AECD71997E5FE00EFC5EC /* Constants.swift */; };
 		3EF4B99D1991EA37004FC621 /* GrayScottStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF4B99C1991EA37004FC621 /* GrayScottStruct.swift */; };
 		3EF4B99F1991ECAF004FC621 /* GrayScottProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF4B99E1991ECAF004FC621 /* GrayScottProtocol.swift */; };
 		BE0E5C68198CA26700395741 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C67198CA26700395741 /* AppDelegate.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E7AECD71997E5FE00EFC5EC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3EF4B99C1991EA37004FC621 /* GrayScottStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayScottStruct.swift; sourceTree = "<group>"; };
 		3EF4B99E1991ECAF004FC621 /* GrayScottProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayScottProtocol.swift; sourceTree = "<group>"; };
 		BE0E5C62198CA26700395741 /* ThreadsExperiment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThreadsExperiment.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +70,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E7AECD61997E5E700EFC5EC /* consts */ = {
+			isa = PBXGroup;
+			children = (
+				3E7AECD71997E5FE00EFC5EC /* Constants.swift */,
+			);
+			name = consts;
+			sourceTree = "<group>";
+		};
 		3EF4B99B1991EA1D004FC621 /* structs */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +108,7 @@
 		BE0E5C64198CA26700395741 /* ThreadsExperiment */ = {
 			isa = PBXGroup;
 			children = (
+				3E7AECD61997E5E700EFC5EC /* consts */,
 				3EF4B99B1991EA1D004FC621 /* structs */,
 				BE623414198D522D00C0A592 /* extensions */,
 				BE0E5C89198CD7B200395741 /* grayScottOperations */,
@@ -259,6 +270,7 @@
 				BE623418198DFE2100C0A592 /* GrayScottRenderer.swift in Sources */,
 				BE67FA84198E55420009D31E /* IntExtension.swift in Sources */,
 				BE623416198D524000C0A592 /* DoubleExtension.swift in Sources */,
+				3E7AECD81997E5FE00EFC5EC /* Constants.swift in Sources */,
 				BE0E5C6B198CA26700395741 /* ThreadsExperiment.xcdatamodeld in Sources */,
 				3EF4B99D1991EA37004FC621 /* GrayScottStruct.swift in Sources */,
 				BE0E5C68198CA26700395741 /* AppDelegate.swift in Sources */,
