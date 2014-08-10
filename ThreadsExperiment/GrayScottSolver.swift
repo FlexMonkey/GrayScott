@@ -45,10 +45,10 @@ public class GrayScottSolver : NSOperation
             for j in 0 ..< Constants.LENGTH
             {
                 let thisPixel : GrayScottStruct! = grayScottConstData[i * Constants.LENGTH + j] as GrayScottStruct;
-                let northPixel : GrayScottStruct! = grayScottConstData[i * Constants.LENGTH + (j + 1).wrap(Constants.LENGTH - 1)] as GrayScottStruct;
-                let southPixel : GrayScottStruct! = grayScottConstData[i * Constants.LENGTH + (j - 1).wrap(Constants.LENGTH - 1)] as GrayScottStruct;
-                let eastPixel : GrayScottStruct! = grayScottConstData[(i - 1).wrap(Constants.LENGTH - 1) * Constants.LENGTH + j] as GrayScottStruct;
-                let westPixel : GrayScottStruct! = grayScottConstData[(i + 1).wrap(Constants.LENGTH - 1) * Constants.LENGTH + j] as GrayScottStruct;
+                let northPixel : GrayScottStruct! = grayScottConstData[i * Constants.LENGTH + (j + 1).wrap(Constants.LENGTH_MINUS_ONE)] as GrayScottStruct;
+                let southPixel : GrayScottStruct! = grayScottConstData[i * Constants.LENGTH + (j - 1).wrap(Constants.LENGTH_MINUS_ONE)] as GrayScottStruct;
+                let eastPixel : GrayScottStruct! = grayScottConstData[(i - 1).wrap(Constants.LENGTH_MINUS_ONE) * Constants.LENGTH + j] as GrayScottStruct;
+                let westPixel : GrayScottStruct! = grayScottConstData[(i + 1).wrap(Constants.LENGTH_MINUS_ONE) * Constants.LENGTH + j] as GrayScottStruct;
 
                 let laplacianU = northPixel.u + southPixel.u + westPixel.u + eastPixel.u - (4.0 * thisPixel.u);
                 let laplacianV = northPixel.v + southPixel.v + westPixel.v + eastPixel.v - (4.0 * thisPixel.v);

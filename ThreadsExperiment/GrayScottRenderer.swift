@@ -54,7 +54,7 @@ public class GrayScottRenderer : NSOperation
     
     public func getGrayScottImage() -> UIImage
     {
-        return grayScottImage;
+        return grayScottImage; 
     }
     
 }
