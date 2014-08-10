@@ -10,10 +10,10 @@ import Foundation
 
 class GrayScottStruct : GrayScottProtocol
 {
-    var u : Float = 0.0;
-    var v : Float = 0.0;
+    var u : Double = 0.0;
+    var v : Double = 0.0;
     
-    init(u : Float, v: Float)
+    init(u : Double, v: Double)
     {
         self.u = u;
         self.v = v;

@@ -15,16 +15,23 @@ import Foundation
 import UIKit
 import CoreImage
 
-class GrayScottSolver : NSOperation
+public class GrayScottSolver : NSOperation
 {
     private var grayScottData = NSMutableArray(capacity: 70 * 70);
     
-    private var f : Float?;
-    private var k : Float?;
-    private var dU : Float?;
-    private var dV : Float?;
+    private var f : Double?;
+    private var k : Double?;
+    private var dU : Double?;
+    private var dV : Double?;
     
-    override func main() -> ()
+    init(grayScottData : NSMutableArray)
+    {
+        super.init();
+        
+        self.setGrayScott(grayScottData);
+    }
+    
+    override public func main() -> ()
     {
         let startTime : CFAbsoluteTime = CFAbsoluteTimeGetCurrent();
         
@@ -49,10 +56,10 @@ class GrayScottSolver : NSOperation
                 let laplacianV = northPixel.v + southPixel.v + westPixel.v + eastPixel.v - (4.0 * thisPixel.v);
                 let reactionRate = thisPixel.u * thisPixel.v * thisPixel.v;
                 
-                let deltaU : Float = dU! * laplacianU - reactionRate + f! * (1.0 - thisPixel.u);
-                let deltaV : Float = dV! * laplacianV + reactionRate - k! * thisPixel.v;
+                let deltaU : Double = dU! * laplacianU - reactionRate + f! * (1.0 - thisPixel.u);
+                let deltaV : Double = dV! * laplacianV + reactionRate - k! * thisPixel.v;
                 
-                let outputPixel = GrayScottStruct(u: Float(thisPixel.u + deltaU).clip(), v: Float(thisPixel.v + deltaV).clip());
+                let outputPixel = GrayScottStruct(u: (thisPixel.u + deltaU).clip(), v: (thisPixel.v + deltaV).clip());
 
                 // setting values by subscripting is about 15% faster than append()!
                 //outputArray.append(outputPixel);
@@ -62,10 +69,11 @@ class GrayScottSolver : NSOperation
 
         grayScottData = outputArray;
         
-        println("GrayScottSolver:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime));
+        println("S  SOLVER:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime));
     }
     
-    func setParameterValues(#f: Float, k : Float, dU : Float, dV : Float)
+    // Double is faster that Double...
+    public func setParameterValues(#f: Double, k : Double, dU : Double, dV : Double)
     {
         self.f = f;
         self.k = k;
@@ -73,12 +81,12 @@ class GrayScottSolver : NSOperation
         self.dV = dV;
     }
     
-    func setGrayScott(value : NSMutableArray)
+    private func setGrayScott(value : NSMutableArray)
     {
         grayScottData = value;
     }
 
-    func getGrayScott() -> NSMutableArray
+    public func getGrayScott() -> NSMutableArray
     {
         return grayScottData;
     }

@@ -16,7 +16,7 @@
 		BE0E5C72198CA26700395741 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE0E5C71198CA26700395741 /* Images.xcassets */; };
 		BE0E5C7E198CA26700395741 /* ThreadsExperimentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C7D198CA26700395741 /* ThreadsExperimentTests.swift */; };
 		BE0E5C8B198CD7F400395741 /* GrayScottSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */; };
-		BE623416198D524000C0A592 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623415198D524000C0A592 /* CGFloatExtension.swift */; };
+		BE623416198D524000C0A592 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623415198D524000C0A592 /* DoubleExtension.swift */; };
 		BE623418198DFE2100C0A592 /* GrayScottRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* GrayScottRenderer.swift */; };
 		BE67FA84198E55420009D31E /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67FA83198E55420009D31E /* IntExtension.swift */; };
 /* End PBXBuildFile section */
@@ -45,7 +45,7 @@
 		BE0E5C7C198CA26700395741 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE0E5C7D198CA26700395741 /* ThreadsExperimentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsExperimentTests.swift; sourceTree = "<group>"; };
 		BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayScottSolver.swift; sourceTree = "<group>"; };
-		BE623415198D524000C0A592 /* CGFloatExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
+		BE623415198D524000C0A592 /* DoubleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		BE623417198DFE2100C0A592 /* GrayScottRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayScottRenderer.swift; sourceTree = "<group>"; };
 		BE67FA83198E55420009D31E /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,7 +148,7 @@
 		BE623414198D522D00C0A592 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
-				BE623415198D524000C0A592 /* CGFloatExtension.swift */,
+				BE623415198D524000C0A592 /* DoubleExtension.swift */,
 				BE67FA83198E55420009D31E /* IntExtension.swift */,
 			);
 			name = extensions;
@@ -203,6 +203,7 @@
 				TargetAttributes = {
 					BE0E5C61198CA26700395741 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = ZBFYF9JG5V;
 					};
 					BE0E5C76198CA26700395741 = {
 						CreatedOnToolsVersion = 6.0;
@@ -257,7 +258,7 @@
 				BE0E5C6D198CA26700395741 /* ViewController.swift in Sources */,
 				BE623418198DFE2100C0A592 /* GrayScottRenderer.swift in Sources */,
 				BE67FA84198E55420009D31E /* IntExtension.swift in Sources */,
-				BE623416198D524000C0A592 /* CGFloatExtension.swift in Sources */,
+				BE623416198D524000C0A592 /* DoubleExtension.swift in Sources */,
 				BE0E5C6B198CA26700395741 /* ThreadsExperiment.xcdatamodeld in Sources */,
 				3EF4B99D1991EA37004FC621 /* GrayScottStruct.swift in Sources */,
 				BE0E5C68198CA26700395741 /* AppDelegate.swift in Sources */,

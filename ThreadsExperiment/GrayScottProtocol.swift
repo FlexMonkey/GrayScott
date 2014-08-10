@@ -10,6 +10,6 @@ import Foundation
 
 @objc protocol GrayScottProtocol
 {
-    var u : Float {get set};
-    var v : Float {get set};
+    var u : Double {get set};
+    var v : Double {get set};
 }

@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-extension Float
+extension Double
 {
-    func clip() -> Float
+    func clip() -> Double
     {
         if self < 0
         {
@@ -29,6 +29,6 @@ extension Float
     
     func format() -> String
     {
-        return NSString(format: "%.4f", Float(self));
+        return NSString(format: "%.4f", Double(self));
     }
 }

@@ -9,13 +9,20 @@
 import Foundation
 import UIKit
 
-class GrayScottRenderer : NSOperation
+public class GrayScottRenderer : NSOperation
 {
 
     private var grayScottData = NSMutableArray(capacity: 70 * 70);
     private var grayScottImage = UIImage();
     
-    override func main() -> ()
+    init(grayScottData : NSMutableArray)
+    {
+        super.init();
+        
+        self.setGrayScott(grayScottData);
+    }
+    
+    override public func main() -> ()
     {
         let startTime : CFAbsoluteTime = CFAbsoluteTimeGetCurrent();
         
@@ -39,15 +46,15 @@ class GrayScottRenderer : NSOperation
         
         UIGraphicsEndImageContext();
         
-        println("GrayScottRenderer:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime));
+        println(" R RENDER:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime));
     }
     
-    func setGrayScott(value : NSMutableArray)
+    private func setGrayScott(value : NSMutableArray)
     {
         grayScottData = value;
     }
     
-    func getGrayScottImage() -> UIImage
+    public func getGrayScottImage() -> UIImage
     {
         return grayScottImage;
     }

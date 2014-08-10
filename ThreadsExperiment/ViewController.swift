@@ -18,14 +18,14 @@ class ViewController: UIViewController
     @IBOutlet var parameterValueLabel: UILabel!
 
     let queue = NSOperationQueue();
-    var solver : GrayScottSolver = GrayScottSolver();
-    var renderer : GrayScottRenderer = GrayScottRenderer();
+    var solver : GrayScottSolver?;
+    var renderer : GrayScottRenderer?;
     let arrayLength = 70;
     
-    var f : Float = 0.023;
-    var k : Float = 0.0795;
-    var dU : Float = 0.16;
-    var dV : Float = 0.08;
+    var f : Double = 0.023;
+    var k : Double = 0.0795;
+    var dU : Double = 0.16;
+    var dV : Double = 0.08;
 
     var grayScottData : NSMutableArray = NSMutableArray(capacity: 70 * 70);
  
@@ -57,16 +57,40 @@ class ViewController: UIViewController
 
     func timerHandler()
     {
-        if solver.finished
+        if solver!.finished
         {
-            grayScottData = solver.getGrayScott();
+            grayScottData = solver!.getGrayScott();
+            
+            if let tmp = renderer
+            {
+                if !tmp.executing
+                {
+                    dispatchRenderOperation();
+                }
+            }
+            else
+            {
+                dispatchRenderOperation();
+            }
+            
             solveGrayScott();
         }
         
-        if(renderer.finished)
+        if let tmp = renderer
         {
-            renderGrayScott();
+            if(tmp.finished)
+            {
+                renderGrayScott();
+            }
         }
+    }
+    
+    func dispatchRenderOperation()
+    {
+        renderer = GrayScottRenderer(grayScottData: grayScottData);
+        renderer!.threadPriority = 0;
+        
+        queue.addOperation(renderer);
     }
     
     @IBAction func sliderValueChangeHandler(sender: AnyObject)
@@ -74,15 +98,15 @@ class ViewController: UIViewController
         switch parameterButtonBar.selectedSegmentIndex
         {
             case 0:
-                f = Float(parameterSlider.value);
+                f = Double(parameterSlider.value);
             case 1:
-                k = Float(parameterSlider.value);
+                k = Double(parameterSlider.value);
             case 2:
-                dU = Float(parameterSlider.value);
+                dU = Double(parameterSlider.value);
             case 3:
-                dV = Float(parameterSlider.value);
+                dV = Double(parameterSlider.value);
             default:
-                f = Float(parameterSlider.value);
+                f = Double(parameterSlider.value);
         }
         
         updateLabel();
@@ -117,31 +141,20 @@ class ViewController: UIViewController
     
     private func solveGrayScott()
     {
-        solver = GrayScottSolver();
+        solver = GrayScottSolver(grayScottData: grayScottData);
     
-        solver.setGrayScott(grayScottData);
-        solver.setParameterValues(f: f, k: k, dU: dU, dV: dV)
-        solver.threadPriority = 0;
+        solver!.setParameterValues(f: f, k: k, dU: dU, dV: dV)
+        solver!.threadPriority = 0;
         
         // this doesn't work because the completion block isn't executed in the main thread
         //solver.completionBlock = {self.didSolve(self.solver.getGrayScott())};
   
         queue.addOperation(solver);
-        
-        if !renderer.executing
-        {
-            renderer = GrayScottRenderer();
-            renderer.setGrayScott(grayScottData);
-            renderer.threadPriority = 0;
-
-            queue.addOperation(renderer);
-        }
     }
 
     private func renderGrayScott()
     {
-        imageView.image = renderer.getGrayScottImage();
-     
+        imageView.image = renderer!.getGrayScottImage();
     }
 
 }
