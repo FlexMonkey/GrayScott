@@ -46,10 +46,10 @@ class ViewController: UIViewController
             }
         }
         
-        let timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: Selector("timerHandler"), userInfo: nil, repeats: true)
+        let timer = NSTimer.scheduledTimerWithTimeInterval(0.025, target: self, selector: Selector("timerHandler"), userInfo: nil, repeats: true);
         
         updateLabel();
-        solveGrayScott();
+        dispatchSolverOperation();
     }
 
     func timerHandler()
@@ -70,7 +70,7 @@ class ViewController: UIViewController
                 dispatchRenderOperation();
             }
             
-            solveGrayScott();
+            dispatchSolverOperation();
         }
         
         if let tmp = renderer
@@ -136,7 +136,7 @@ class ViewController: UIViewController
         }
     }
     
-    private func solveGrayScott()
+    private func dispatchSolverOperation()
     {
         solver = GrayScottSolver(grayScottData: grayScottData);
     
