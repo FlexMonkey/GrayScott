@@ -13,7 +13,7 @@ public class GrayScottRenderer : NSOperation
 {
 
     private var grayScottData = NSMutableArray(capacity: Constants.LENGTH_SQUARED);
-    private var grayScottImage = UIImage();
+    private var grayScottImage : UIImage?;
     
     init(grayScottData : NSMutableArray)
     {
@@ -52,7 +52,7 @@ public class GrayScottRenderer : NSOperation
         grayScottData = value;
     }
     
-    public func getGrayScottImage() -> UIImage
+    public func getGrayScottImage() -> UIImage?
     {
         return grayScottImage; 
     }
