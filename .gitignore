@@ -1,0 +1,9 @@
+
+*.xccheckout
+
+*.xcuserstate
+
+*.xcbkptlist
+
+ThreadsExperiment.xcodeproj/xcuserdata/*
+
