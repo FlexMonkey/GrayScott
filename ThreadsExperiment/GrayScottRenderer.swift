@@ -9,52 +9,31 @@
 import Foundation
 import UIKit
 
-public class GrayScottRenderer : NSOperation
+
+
+func renderGrayScott(grayScottData:[GrayScottStruct])->UIImage
 {
-
-    private var grayScottData = NSMutableArray(capacity: Constants.LENGTH_SQUARED);
-    private var grayScottImage : UIImage?;
+    let startTime : CFAbsoluteTime = CFAbsoluteTimeGetCurrent();
     
-    init(grayScottData : NSMutableArray)
-    {
-        super.init();
-        
-        self.setGrayScott(grayScottData);
-    }
+    UIGraphicsBeginImageContextWithOptions(CGSize(width: Constants.LENGTH, height: Constants.LENGTH), true, 1);
+    let context = UIGraphicsGetCurrentContext();
     
-    override public func main() -> ()
+    for i in 0 ..< Constants.LENGTH
     {
-        let startTime : CFAbsoluteTime = CFAbsoluteTimeGetCurrent();
-
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: Constants.LENGTH, height: Constants.LENGTH), true, 1);
-        let context = UIGraphicsGetCurrentContext();
-
-        for i in 0 ..< Constants.LENGTH
+        for j in 0 ..< Constants.LENGTH
         {
-            for j in 0 ..< Constants.LENGTH
-            {
-                let grayScottCell : GrayScottStruct = grayScottData[i * Constants.LENGTH + j] as GrayScottStruct;
-                
-                CGContextSetRGBFillColor (context, CGFloat(grayScottCell.u), CGFloat(grayScottCell.u), CGFloat(grayScottCell.v), 1);
-                CGContextFillRect (context, CGRectMake (CGFloat(i), CGFloat(j), 1, 1));
-            }
+            let grayScottCell : GrayScottStruct = grayScottData[i * Constants.LENGTH + j] as GrayScottStruct;
+            
+            CGContextSetRGBFillColor (context, CGFloat(grayScottCell.u), CGFloat(grayScottCell.u), CGFloat(grayScottCell.v), 1);
+            CGContextFillRect (context, CGRectMake (CGFloat(i), CGFloat(j), 1, 1));
         }
-        
-        grayScottImage = UIGraphicsGetImageFromCurrentImageContext();
-        
-        UIGraphicsEndImageContext();
-        
-        println(" R RENDER:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime));
     }
     
-    private func setGrayScott(value : NSMutableArray)
-    {
-        grayScottData = value;
-    }
+    let outputImage = UIGraphicsGetImageFromCurrentImageContext();
     
-    public func getGrayScottImage() -> UIImage?
-    {
-        return grayScottImage; 
-    }
-    
+    UIGraphicsEndImageContext();
+
+    println(" R RENDER:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime));
+        
+    return outputImage
 }
