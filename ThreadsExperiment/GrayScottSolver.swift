@@ -26,8 +26,7 @@ func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:GrayScott
     let startTime : CFAbsoluteTime = CFAbsoluteTimeGetCurrent();
     
     var index : Int = 0;
-    var outputArray = [GrayScottStruct]()
-    outputArray.reserveCapacity(Constants.LENGTH_SQUARED)
+    var outputArray = grayScottConstData // Copy to get array big enough
     for i in 0 ..< Constants.LENGTH
     {
         for j in 0 ..< Constants.LENGTH
@@ -45,14 +44,11 @@ func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:GrayScott
             let deltaU : Double = parameters.dU * laplacianU - reactionRate + parameters.f * (1.0 - thisPixel.u);
             let deltaV : Double = parameters.dV * laplacianV + reactionRate - parameters.k * thisPixel.v;
             
-            let outputPixel = GrayScottStruct(u: (thisPixel.u + deltaU).clip(), v: (thisPixel.v + deltaV).clip());
+            let outputPixel = GrayScottStruct(u: (thisPixel.u + deltaU).clip(), v: (thisPixel.v + deltaV).clip())
             
+            //outputArray.append(outputPixel)
             
-            // TODO: Check this performance difference occurs when capacity is reserved.
-            // setting values by subscripting is about 15% faster than append()
-            outputArray.append(outputPixel);
-            
-            //outputArray[index++] = outputPixel;
+            outputArray[index++] = outputPixel;
         }
     }
 
