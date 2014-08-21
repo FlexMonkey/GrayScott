@@ -21,7 +21,7 @@ let gsParams = GrayScottParmeters(f: 0.023, k: 0.0795, dU: 0.16, dV: 0.08)
 
 public struct Constants
 {
-    static let LENGTH : Int = 1024
+    static let LENGTH : Int = 2048
     static let LENGTH_MINUS_ONE : Int = LENGTH - 1
     static let LENGTH_SQUARED : Int = LENGTH * LENGTH
 }
@@ -70,7 +70,9 @@ class ThreadsExperimentUnitTests: XCTestCase {
         var gsData = grayScottData
         self.measureBlock() {
             // Put the code you want to measure the time of here.
-            gsData = grayScottSolver(gsData, gsParams)
+            for i in 0..<20 {
+                gsData = grayScottSolver(gsData, gsParams)
+            }
         }
     }
     
