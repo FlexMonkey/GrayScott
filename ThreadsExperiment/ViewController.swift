@@ -29,9 +29,11 @@ class ViewController: UIViewController
             {
                 data.append(GrayScottStruct(u:1.0, v:0.0))
             }
-            for i in 25 ..< 45
+            let t0 = Constants.LENGTH * 5 / 14
+            let t1 = Constants.LENGTH - t0
+            for i in t0 ..< t1
             {
-                for j in 25 ..< 45
+                for j in t0 ..< t1
                 {
                     if arc4random() % 100 > 5
                     {
