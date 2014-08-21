@@ -8,57 +8,7 @@
 
 import Foundation
 import UIKit
-/*
-class RenderedGSImage : CIImage {
-    let grayScottData:[GrayScottStruct]
-    init(grayScottData:[GrayScottStruct]) {
-        self.grayScottData = grayScottData
-    }
 
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    override func extent() -> CGRect {
-        return CGRect(x: 0, y: 0, width: Constants.LENGTH, height: Constants.LENGTH)
-    }
-    
-}
-*/
-/*
-CGImageRef CreateImageFromARGB32Bitmap(
-unsigned int height,
-unsigned int width,
-void *baseAddr,
-unsigned int rowBytes)
-{
-const size_t bitsPerComponent = 8;
-const size_t bitsPerPixel = 32;
-
-CGImageRef retVal = NULL;
-
-// Create a data provider. We pass in NULL for the info
-// and the release procedure pointer.
-CGDataProviderRef dataProvider =
-CGDataProviderCreateWithData(
-NULL, baseAddr, rowBytes * height, NULL);
-
-// Get our hands on the generic RGB color space.
-CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateWithName(
-kCGColorSpaceGenericRGB);
-// Create an image
-retVal = CGImageCreate(
-width, height, bitsPerComponent, bitsPerPixel,
-rowBytes, rgbColorSpace, kCGImageAlphaPremultipliedFirst,
-dataProvider, NULL, true, kCGRenderingIntentDefault);
-
-// The data provider and color space now belong to the
-// image so we can release them.
-CGDataProviderRelease(dataProvider);
-CGColorSpaceRelease(rgbColorSpace);
-
-return retVal;
-}
-*/
 struct PixelData {
     var a:UInt8 = 255
     var r:UInt8
@@ -94,25 +44,7 @@ func renderGrayScott(grayScottData:[GrayScottStruct])->UIImage
         }
     }
     let outputImage = imageFromARGB32Bitmap(pixelArray, UInt(Constants.LENGTH), UInt(Constants.LENGTH))
-/*
-    UIGraphicsBeginImageContextWithOptions(CGSize(width: Constants.LENGTH, height: Constants.LENGTH), true, 1);
-    let context = UIGraphicsGetCurrentContext();
-    
-    for i in 0 ..< Constants.LENGTH
-    {
-        for j in 0 ..< Constants.LENGTH
-        {
-            let grayScottCell : GrayScottStruct = grayScottData[i * Constants.LENGTH + j] as GrayScottStruct;
-            
-            CGContextSetRGBFillColor (context, CGFloat(grayScottCell.u), CGFloat(grayScottCell.u), CGFloat(grayScottCell.v), 1);
-            CGContextFillRect (context, CGRectMake (CGFloat(i), CGFloat(j), 1, 1));
-        }
-    }
-    
-    let outputImage = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-*/
+
     println(" R RENDER:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime));
 
     return outputImage
