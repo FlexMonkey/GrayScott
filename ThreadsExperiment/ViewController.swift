@@ -103,18 +103,28 @@ class ViewController: UIViewController
         }
     }
     
-    
+    private var lastFrameCountTime = NSDate()
+    private var frameCount = 0
     private func dispatchSolverOperation()
     {
         let dataCopy = grayScottData
         let params = GrayScottParmeters(f: f, k: k, dU: dU, dV: dV)
+        weak var weakSelf = self
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-            let newGSData = grayScottSolver(dataCopy, params)
+            let newGSData = grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(dataCopy, params), params), params), params), params), params), params), params), params), params), params), params), params)
             let newImage = renderGrayScott(newGSData)
             dispatch_async(dispatch_get_main_queue()) {
-                self.grayScottData = newGSData
-                self.imageView.image = newImage
-                self.dispatchSolverOperation()
+                if let s = weakSelf {
+                    s.grayScottData = newGSData
+                    s.imageView.image = newImage
+                    s.dispatchSolverOperation()
+                    if s.lastFrameCountTime.timeIntervalSinceNow < -1.0 {
+                        println("Frame count = \(s.frameCount)")
+                        s.frameCount = 0
+                        s.lastFrameCountTime = NSDate()
+                    }
+                    ++s.frameCount
+                }
             }
         }
     }
