@@ -20,13 +20,14 @@ public struct GrayScottParmeters {
     public var dV : Double
 }
 
-let semaphore = dispatch_semaphore_create(0)
-let queue0 = dispatch_queue_create("com.humanfriendly.grayscottsolver0",  DISPATCH_QUEUE_SERIAL)
-let queue1 = dispatch_queue_create("com.humanfriendly.grayscottsolver1",  DISPATCH_QUEUE_SERIAL)
 
 private var solverstatsCount = 0
 public func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:GrayScottParmeters)->[GrayScottStruct] {
 
+    let semaphore = dispatch_semaphore_create(0)
+    let queue0 = dispatch_queue_create("com.humanfriendly.grayscottsolver0",  DISPATCH_QUEUE_SERIAL)
+    let queue1 = dispatch_queue_create("com.humanfriendly.grayscottsolver1",  DISPATCH_QUEUE_SERIAL)
+    
     var outputArray = [GrayScottStruct](count: grayScottConstData.count, repeatedValue: GrayScottStruct(u: 0, v: 0))
     dispatch_async(queue0) {
         grayScottPartialSolver(grayScottConstData, parameters, 0, Constants.LENGTH/2, &outputArray)
