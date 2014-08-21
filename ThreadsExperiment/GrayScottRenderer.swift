@@ -60,10 +60,10 @@ return retVal;
 }
 */
 struct PixelData {
+    var a:UInt8 = 255
     var r:UInt8
     var g:UInt8
     var b:UInt8
-    var a:UInt8 = 255
 }
 func imageFromARGB32Bitmap(pixels:[PixelData], width:UInt, height:UInt)->UIImage {
     let bitsPerComponent:UInt = 8
@@ -79,7 +79,7 @@ func imageFromARGB32Bitmap(pixels:[PixelData], width:UInt, height:UInt)->UIImage
 func renderGrayScott(grayScottData:[GrayScottStruct])->UIImage
 {
     let startTime : CFAbsoluteTime = CFAbsoluteTimeGetCurrent();
-    var pixelArray = [PixelData](count: Constants.LENGTH_SQUARED, repeatedValue: PixelData(r: 0, g: 0, b: 0, a: 255))
+    var pixelArray = [PixelData](count: Constants.LENGTH_SQUARED, repeatedValue: PixelData(a: 255, r:0, g: 0, b: 0))
     
     for i in 0 ..< Constants.LENGTH
     {
