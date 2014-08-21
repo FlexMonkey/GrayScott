@@ -111,7 +111,7 @@ class ViewController: UIViewController
         let params = GrayScottParmeters(f: f, k: k, dU: dU, dV: dV)
         weak var weakSelf = self
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-            let newGSData = grayScottSolver(dataCopy, params)
+            let newGSData = grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(grayScottSolver(dataCopy, params), params), params), params), params), params), params), params), params), params), params), params), params)
             let newImage = renderGrayScott(newGSData)
             dispatch_async(dispatch_get_main_queue()) {
                 if let s = weakSelf {
