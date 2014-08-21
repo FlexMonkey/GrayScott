@@ -15,8 +15,6 @@ class ViewController: UIViewController
     @IBOutlet var parameterSlider: UISlider!
     @IBOutlet var parameterButtonBar: UISegmentedControl!
     @IBOutlet var parameterValueLabel: UILabel!
-
-
     
     var f : Double = 0.023;
     var k : Double = 0.0795;

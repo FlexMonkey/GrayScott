@@ -20,25 +20,30 @@ public struct GrayScottParmeters {
     public var dV : Double
 }
 
+private let solverQueues = 2
 
 private var solverstatsCount = 0
 public func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:GrayScottParmeters)->[GrayScottStruct] {
-
-    let semaphore = dispatch_semaphore_create(0)
-    let queue0 = dispatch_queue_create("com.humanfriendly.grayscottsolver0",  DISPATCH_QUEUE_SERIAL)
-    let queue1 = dispatch_queue_create("com.humanfriendly.grayscottsolver1",  DISPATCH_QUEUE_SERIAL)
     
+    let semaphore = dispatch_semaphore_create(0)
+    //var queues
     var outputArray = [GrayScottStruct](count: grayScottConstData.count, repeatedValue: GrayScottStruct(u: 0, v: 0))
-    dispatch_async(queue0) {
-        grayScottPartialSolver(grayScottConstData, parameters, 0, Constants.LENGTH/2, &outputArray)
-        dispatch_semaphore_signal(semaphore)
+    
+    let queue = dispatch_queue_create("com.humanfriendly.grayscottsolver",  DISPATCH_QUEUE_CONCURRENT)
+    
+    let sectionSize:Int = Constants.LENGTH/solverQueues
+    var sectionIndexes = map(0...solverQueues) { Int($0 * sectionSize) }
+    sectionIndexes[solverQueues] = Constants.LENGTH
+    
+    for i in 0..<solverQueues {
+        dispatch_async(queue) {
+            grayScottPartialSolver(grayScottConstData, parameters, sectionIndexes[i], sectionIndexes[i + 1], &outputArray)
+            dispatch_semaphore_signal(semaphore)
+        }
     }
-    dispatch_async(queue1) {
-        grayScottPartialSolver(grayScottConstData, parameters, Constants.LENGTH/2, Constants.LENGTH, &outputArray)
-        dispatch_semaphore_signal(semaphore)
+    for i in 0..<solverQueues {
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
     }
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
     
     return outputArray
 }
