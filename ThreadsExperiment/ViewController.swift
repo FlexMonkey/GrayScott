@@ -24,6 +24,7 @@ class ViewController: UIViewController
     var dV : Double = 0.08;
 
     var grayScottData:[GrayScottStruct] = {
+        
             var data = [GrayScottStruct]()
             for i in 0..<Constants.LENGTH_SQUARED
             {
@@ -42,8 +43,11 @@ class ViewController: UIViewController
                 }
             }
             return data
-        }()
-
+        }() {
+        didSet {
+            dispatchRender()
+        }
+    }
 
     override func viewDidLoad()
     {
@@ -107,25 +111,52 @@ class ViewController: UIViewController
     
     private var lastFrameCountTime = NSDate()
     private var frameCount = 0
-    private func dispatchSolverOperation()
+    private var solveCount = 0
+    private final func dispatchSolverOperation()
     {
         let dataCopy = grayScottData
         let params = GrayScottParmeters(f: f, k: k, dU: dU, dV: dV)
         weak var weakSelf = self
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             let newGSData = grayScottSolver(dataCopy, params)
-            let newImage = renderGrayScott(newGSData)
             dispatch_async(dispatch_get_main_queue()) {
                 if let s = weakSelf {
+                    ++s.solveCount
                     s.grayScottData = newGSData
-                    s.imageView.image = newImage
                     s.dispatchSolverOperation()
+                }
+            }
+        }
+    }
+    private var renderedCount = 0
+    private var skippedCount = 0
+    private var isRendering = false
+    private final func dispatchRender() {
+        if isRendering {
+            ++skippedCount
+            if skippedCount % 256 == 0 {
+                println("Rendering bottleneck, render skipped. Skipped:\(skippedCount) Rendered: \(renderedCount) Skipped: \(100 * skippedCount / (skippedCount + renderedCount))")
+            }
+            return
+        }
+        ++renderedCount
+        isRendering = true
+        let gsData = self.grayScottData
+        weak var weakSelf = self
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            let newImage = renderGrayScott(gsData)
+            dispatch_async(dispatch_get_main_queue()) {
+                if let s = weakSelf {
+                    s.isRendering = false
+                    s.imageView.image = newImage
                     if s.lastFrameCountTime.timeIntervalSinceNow < -1.0 {
-                        println("Frame count = \(s.frameCount)")
+                        println("Frame count = \(s.frameCount) Solve count: \(s.solveCount)")
                         s.frameCount = 0
+                        s.solveCount = 0
                         s.lastFrameCountTime = NSDate()
                     }
                     ++s.frameCount
+                    
                 }
             }
         }
