@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct PixelData {
     var a:UInt8 = 255

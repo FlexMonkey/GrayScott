@@ -14,23 +14,48 @@
 import Foundation
 
 public struct GrayScottParmeters {
-    var f : Double
-    var k : Double
-    var dU : Double
-    var dV : Double
+    public var f : Double
+    public var k : Double
+    public var dU : Double
+    public var dV : Double
 }
+
+let semaphore = dispatch_semaphore_create(0)
+let queue0 = dispatch_queue_create("com.humanfriendly.grayscottsolver0",  DISPATCH_QUEUE_SERIAL)
+let queue1 = dispatch_queue_create("com.humanfriendly.grayscottsolver1",  DISPATCH_QUEUE_SERIAL)
 
 private var solverstatsCount = 0
 public func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:GrayScottParmeters)->[GrayScottStruct] {
+
+    var outputArray = [GrayScottStruct](count: grayScottConstData.count, repeatedValue: GrayScottStruct(u: 0, v: 0))
+    dispatch_async(queue0) {
+        grayScottPartialSolver(grayScottConstData, parameters, 0, Constants.LENGTH/2, &outputArray)
+        dispatch_semaphore_signal(semaphore)
+    }
+    dispatch_async(queue1) {
+        grayScottPartialSolver(grayScottConstData, parameters, Constants.LENGTH/2, Constants.LENGTH, &outputArray)
+        dispatch_semaphore_signal(semaphore)
+    }
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+    
+    return outputArray
+}
+
+private func grayScottPartialSolver(grayScottConstData: [GrayScottStruct], parameters: GrayScottParmeters, startLine:Int, endLine:Int, inout outputArray: [GrayScottStruct]) {
     let stats = solverstatsCount % 1024 == 0
     var startTime : CFAbsoluteTime?
     if stats {
         startTime = CFAbsoluteTimeGetCurrent();
     }
+    assert(startLine >= 0)
+    assert(endLine <= Constants.LENGTH)
+    assert(outputArray.count == Constants.LENGTH_SQUARED)
+    assert(grayScottConstData.count == Constants.LENGTH_SQUARED)
     
-    var index : Int = 0;
-    var outputArray = grayScottConstData // Copy to get array big enough
-    for i in 0 ..< Constants.LENGTH
+    var index : Int = startLine * Constants.LENGTH
+    
+    for i in startLine ..< endLine
     {
         for j in 0 ..< Constants.LENGTH
         {
@@ -59,5 +84,4 @@ public func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:Gr
         println("S  SOLVER:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime!));
     }
     ++solverstatsCount
-    return outputArray
 }
