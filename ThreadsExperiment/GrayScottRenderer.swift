@@ -15,13 +15,17 @@ struct PixelData {
     var g:UInt8
     var b:UInt8
 }
-func imageFromARGB32Bitmap(pixels:[PixelData], width:UInt, height:UInt)->UIImage {
+
+private let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
+private let bitmapInfo:CGBitmapInfo = CGBitmapInfo(CGImageAlphaInfo.PremultipliedFirst.toRaw())
+
+private func imageFromARGB32Bitmap(pixels:[PixelData], width:UInt, height:UInt)->UIImage {
     let bitsPerComponent:UInt = 8
     let bitsPerPixel:UInt = 32
+    
     var data = pixels // Copy to mutable []
-    let providerRef = CGDataProviderCreateWithCFData(NSData(bytes: &data, length: data.count * sizeof(PixelData))) //NSData(bytes: &pixelArray, length: pixelArray.count * sizeof(PixelData))
-    let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
-    let bitmapInfo:CGBitmapInfo = CGBitmapInfo(CGImageAlphaInfo.PremultipliedFirst.toRaw())
+    let providerRef = CGDataProviderCreateWithCFData(NSData(bytes: &data, length: data.count * sizeof(PixelData)))
+
     let cgim = CGImageCreate(width, height, bitsPerComponent, bitsPerPixel, width * UInt(sizeof(PixelData)), rgbColorSpace,	bitmapInfo, providerRef, nil, true, kCGRenderingIntentDefault)
     return UIImage(CGImage: cgim)
 }
