@@ -12,9 +12,8 @@
 //
 
 import Foundation
-import UIKit
 
-struct GrayScottParmeters {
+public struct GrayScottParmeters {
     var f : Double
     var k : Double
     var dU : Double
@@ -22,7 +21,7 @@ struct GrayScottParmeters {
 }
 
 private var solverstatsCount = 0
-func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:GrayScottParmeters)->[GrayScottStruct] {
+public func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:GrayScottParmeters)->[GrayScottStruct] {
     let stats = solverstatsCount % 1024 == 0
     var startTime : CFAbsoluteTime?
     if stats {
