@@ -103,7 +103,8 @@ class ViewController: UIViewController
         }
     }
     
-    
+    private var lastFrameCountTime = NSDate()
+    private var frameCount = 0
     private func dispatchSolverOperation()
     {
         let dataCopy = grayScottData
@@ -117,6 +118,12 @@ class ViewController: UIViewController
                     s.grayScottData = newGSData
                     s.imageView.image = newImage
                     s.dispatchSolverOperation()
+                    if s.lastFrameCountTime.timeIntervalSinceNow < -1.0 {
+                        println("Frame count = \(s.frameCount)")
+                        s.frameCount = 0
+                        s.lastFrameCountTime = NSDate()
+                    }
+                    ++s.frameCount
                 }
             }
         }

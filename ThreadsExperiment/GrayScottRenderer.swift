@@ -30,9 +30,14 @@ private func imageFromARGB32Bitmap(pixels:[PixelData], width:UInt, height:UInt)-
     return UIImage(CGImage: cgim)
 }
 
+private var statsCount = 0
 func renderGrayScott(grayScottData:[GrayScottStruct])->UIImage
 {
-    let startTime : CFAbsoluteTime = CFAbsoluteTimeGetCurrent();
+    let stats = statsCount % 1024 == 0
+    var startTime : CFAbsoluteTime?
+    if stats {
+        startTime = CFAbsoluteTimeGetCurrent();
+    }
     var pixelArray = [PixelData](count: Constants.LENGTH_SQUARED, repeatedValue: PixelData(a: 255, r:0, g: 0, b: 0))
     
     for i in 0 ..< Constants.LENGTH
@@ -48,8 +53,9 @@ func renderGrayScott(grayScottData:[GrayScottStruct])->UIImage
         }
     }
     let outputImage = imageFromARGB32Bitmap(pixelArray, UInt(Constants.LENGTH), UInt(Constants.LENGTH))
-
-    println(" R RENDER:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime));
-
+    if stats {
+        println(" R RENDER:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime!));
+    }
+    ++statsCount
     return outputImage
 }
