@@ -29,6 +29,21 @@
 		BE623416198D524000C0A592 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623415198D524000C0A592 /* DoubleExtension.swift */; };
 		BE623418198DFE2100C0A592 /* GrayScottRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* GrayScottRenderer.swift */; };
 		BE67FA84198E55420009D31E /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67FA83198E55420009D31E /* IntExtension.swift */; };
+		BEE9747D19A77B63006B1208 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9747C19A77B63006B1208 /* main.swift */; };
+		BEE9747F19A77B63006B1208 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9747E19A77B63006B1208 /* AppDelegate.swift */; };
+		BEE9748119A77B63006B1208 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEE9748019A77B63006B1208 /* Images.xcassets */; };
+		BEE9748419A77B63006B1208 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEE9748219A77B63006B1208 /* MainMenu.xib */; };
+		BEE9749019A77B63006B1208 /* GrayScottOSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9748F19A77B63006B1208 /* GrayScottOSXTests.swift */; };
+		BEE974A019A7956D006B1208 /* GrayScottView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9749F19A7956D006B1208 /* GrayScottView.swift */; };
+		BEE974A219A7A429006B1208 /* GrayScottWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEE974A119A7A429006B1208 /* GrayScottWindow.xib */; };
+		BEE974A419A7A57E006B1208 /* GSWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE974A319A7A57E006B1208 /* GSWindowController.swift */; };
+		BEE974A519A7DDBA006B1208 /* GrayScottSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */; };
+		BEE974A619A7DE0C006B1208 /* GrayScottStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF4B99C1991EA37004FC621 /* GrayScottStruct.swift */; };
+		BEE974A819A7DF1C006B1208 /* NSImageFromBitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE974A719A7DF1C006B1208 /* NSImageFromBitmap.swift */; };
+		BEE974AB19A7DFCA006B1208 /* UIImageFromBitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE974AA19A7DFCA006B1208 /* UIImageFromBitmap.swift */; };
+		BEE974AC19A7E50E006B1208 /* GrayScottRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* GrayScottRenderer.swift */; };
+		BEE974AD19A7E515006B1208 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623415198D524000C0A592 /* DoubleExtension.swift */; };
+		BEE974AE19A7E519006B1208 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67FA83198E55420009D31E /* IntExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +53,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = BE0E5C61198CA26700395741;
 			remoteInfo = ThreadsExperiment;
+		};
+		BEE9748A19A77B63006B1208 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE0E5C5A198CA26700395741 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BEE9747719A77B63006B1208;
+			remoteInfo = GrayScottOSX;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -64,6 +86,20 @@
 		BE623415198D524000C0A592 /* DoubleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		BE623417198DFE2100C0A592 /* GrayScottRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayScottRenderer.swift; sourceTree = "<group>"; };
 		BE67FA83198E55420009D31E /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		BEE9747819A77B63006B1208 /* GrayScottOSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrayScottOSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEE9747B19A77B63006B1208 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEE9747C19A77B63006B1208 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		BEE9747E19A77B63006B1208 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BEE9748019A77B63006B1208 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BEE9748319A77B63006B1208 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		BEE9748919A77B63006B1208 /* GrayScottOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrayScottOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEE9748E19A77B63006B1208 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEE9748F19A77B63006B1208 /* GrayScottOSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayScottOSXTests.swift; sourceTree = "<group>"; };
+		BEE9749F19A7956D006B1208 /* GrayScottView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayScottView.swift; sourceTree = "<group>"; };
+		BEE974A119A7A429006B1208 /* GrayScottWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GrayScottWindow.xib; sourceTree = "<group>"; };
+		BEE974A319A7A57E006B1208 /* GSWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSWindowController.swift; sourceTree = "<group>"; };
+		BEE974A719A7DF1C006B1208 /* NSImageFromBitmap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImageFromBitmap.swift; sourceTree = "<group>"; };
+		BEE974AA19A7DFCA006B1208 /* UIImageFromBitmap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageFromBitmap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +125,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BE3A831C19A6600D0037C740 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEE9747519A77B63006B1208 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEE9748619A77B63006B1208 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -121,6 +171,8 @@
 				BE0E5C7A198CA26700395741 /* ThreadsExperimentTests */,
 				BE3A830E19A651940037C740 /* ThreadsExperimentUnitTests */,
 				BE3A832019A6600D0037C740 /* ThreadsExperimentTests-OSX */,
+				BEE9747919A77B63006B1208 /* GrayScottOSX */,
+				BEE9748C19A77B63006B1208 /* GrayScottOSXTests */,
 				BE0E5C63198CA26700395741 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -132,6 +184,8 @@
 				BE0E5C77198CA26700395741 /* ThreadsExperimentTests.xctest */,
 				BE3A830D19A651940037C740 /* ThreadsExperimentUnitTests.xctest */,
 				BE3A831F19A6600D0037C740 /* ThreadsExperimentTests-OSX.xctest */,
+				BEE9747819A77B63006B1208 /* GrayScottOSX.app */,
+				BEE9748919A77B63006B1208 /* GrayScottOSXTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -139,6 +193,7 @@
 		BE0E5C64198CA26700395741 /* ThreadsExperiment */ = {
 			isa = PBXGroup;
 			children = (
+				BEE974A919A7DF44006B1208 /* image processing */,
 				3E7AECD61997E5E700EFC5EC /* consts */,
 				3EF4B99B1991EA1D004FC621 /* structs */,
 				BE623414198D522D00C0A592 /* extensions */,
@@ -230,6 +285,55 @@
 			name = extensions;
 			sourceTree = "<group>";
 		};
+		BEE9747919A77B63006B1208 /* GrayScottOSX */ = {
+			isa = PBXGroup;
+			children = (
+				BEE9747E19A77B63006B1208 /* AppDelegate.swift */,
+				BEE9748019A77B63006B1208 /* Images.xcassets */,
+				BEE9748219A77B63006B1208 /* MainMenu.xib */,
+				BEE9747A19A77B63006B1208 /* Supporting Files */,
+				BEE9749F19A7956D006B1208 /* GrayScottView.swift */,
+				BEE974A119A7A429006B1208 /* GrayScottWindow.xib */,
+				BEE974A319A7A57E006B1208 /* GSWindowController.swift */,
+				BEE974A719A7DF1C006B1208 /* NSImageFromBitmap.swift */,
+			);
+			path = GrayScottOSX;
+			sourceTree = "<group>";
+		};
+		BEE9747A19A77B63006B1208 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BEE9747B19A77B63006B1208 /* Info.plist */,
+				BEE9747C19A77B63006B1208 /* main.swift */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BEE9748C19A77B63006B1208 /* GrayScottOSXTests */ = {
+			isa = PBXGroup;
+			children = (
+				BEE9748F19A77B63006B1208 /* GrayScottOSXTests.swift */,
+				BEE9748D19A77B63006B1208 /* Supporting Files */,
+			);
+			path = GrayScottOSXTests;
+			sourceTree = "<group>";
+		};
+		BEE9748D19A77B63006B1208 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BEE9748E19A77B63006B1208 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BEE974A919A7DF44006B1208 /* image processing */ = {
+			isa = PBXGroup;
+			children = (
+				BEE974AA19A7DFCA006B1208 /* UIImageFromBitmap.swift */,
+			);
+			name = "image processing";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -302,6 +406,41 @@
 			productReference = BE3A831F19A6600D0037C740 /* ThreadsExperimentTests-OSX.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		BEE9747719A77B63006B1208 /* GrayScottOSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEE9749519A77B63006B1208 /* Build configuration list for PBXNativeTarget "GrayScottOSX" */;
+			buildPhases = (
+				BEE9747419A77B63006B1208 /* Sources */,
+				BEE9747519A77B63006B1208 /* Frameworks */,
+				BEE9747619A77B63006B1208 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GrayScottOSX;
+			productName = GrayScottOSX;
+			productReference = BEE9747819A77B63006B1208 /* GrayScottOSX.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BEE9748819A77B63006B1208 /* GrayScottOSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEE9749619A77B63006B1208 /* Build configuration list for PBXNativeTarget "GrayScottOSXTests" */;
+			buildPhases = (
+				BEE9748519A77B63006B1208 /* Sources */,
+				BEE9748619A77B63006B1208 /* Frameworks */,
+				BEE9748719A77B63006B1208 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BEE9748B19A77B63006B1208 /* PBXTargetDependency */,
+			);
+			name = GrayScottOSXTests;
+			productName = GrayScottOSXTests;
+			productReference = BEE9748919A77B63006B1208 /* GrayScottOSXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -326,6 +465,13 @@
 					BE3A831E19A6600D0037C740 = {
 						CreatedOnToolsVersion = 6.0;
 					};
+					BEE9747719A77B63006B1208 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					BEE9748819A77B63006B1208 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = BEE9747719A77B63006B1208;
+					};
 				};
 			};
 			buildConfigurationList = BE0E5C5D198CA26700395741 /* Build configuration list for PBXProject "ThreadsExperiment" */;
@@ -345,6 +491,8 @@
 				BE0E5C76198CA26700395741 /* ThreadsExperimentTests */,
 				BE3A830C19A651940037C740 /* ThreadsExperimentUnitTests */,
 				BE3A831E19A6600D0037C740 /* ThreadsExperimentTests-OSX */,
+				BEE9747719A77B63006B1208 /* GrayScottOSX */,
+				BEE9748819A77B63006B1208 /* GrayScottOSXTests */,
 			);
 		};
 /* End PBXProject section */
@@ -380,6 +528,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BEE9747619A77B63006B1208 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEE974A219A7A429006B1208 /* GrayScottWindow.xib in Resources */,
+				BEE9748119A77B63006B1208 /* Images.xcassets in Resources */,
+				BEE9748419A77B63006B1208 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEE9748719A77B63006B1208 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -391,6 +556,7 @@
 				BE623418198DFE2100C0A592 /* GrayScottRenderer.swift in Sources */,
 				BE67FA84198E55420009D31E /* IntExtension.swift in Sources */,
 				BE623416198D524000C0A592 /* DoubleExtension.swift in Sources */,
+				BEE974AB19A7DFCA006B1208 /* UIImageFromBitmap.swift in Sources */,
 				3E7AECD81997E5FE00EFC5EC /* Constants.swift in Sources */,
 				BE0E5C6B198CA26700395741 /* ThreadsExperiment.xcdatamodeld in Sources */,
 				3EF4B99D1991EA37004FC621 /* GrayScottStruct.swift in Sources */,
@@ -431,6 +597,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BEE9747419A77B63006B1208 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEE974A819A7DF1C006B1208 /* NSImageFromBitmap.swift in Sources */,
+				BEE974AC19A7E50E006B1208 /* GrayScottRenderer.swift in Sources */,
+				BEE9747F19A77B63006B1208 /* AppDelegate.swift in Sources */,
+				BEE974AE19A7E519006B1208 /* IntExtension.swift in Sources */,
+				BEE974AD19A7E515006B1208 /* DoubleExtension.swift in Sources */,
+				BEE974A419A7A57E006B1208 /* GSWindowController.swift in Sources */,
+				BEE974A519A7DDBA006B1208 /* GrayScottSolver.swift in Sources */,
+				BEE974A019A7956D006B1208 /* GrayScottView.swift in Sources */,
+				BEE9747D19A77B63006B1208 /* main.swift in Sources */,
+				BEE974A619A7DE0C006B1208 /* GrayScottStruct.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEE9748519A77B63006B1208 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEE9749019A77B63006B1208 /* GrayScottOSXTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -438,6 +629,11 @@
 			isa = PBXTargetDependency;
 			target = BE0E5C61198CA26700395741 /* ThreadsExperiment */;
 			targetProxy = BE0E5C78198CA26700395741 /* PBXContainerItemProxy */;
+		};
+		BEE9748B19A77B63006B1208 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BEE9747719A77B63006B1208 /* GrayScottOSX */;
+			targetProxy = BEE9748A19A77B63006B1208 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -448,6 +644,14 @@
 				BE0E5C6F198CA26700395741 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BEE9748219A77B63006B1208 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BEE9748319A77B63006B1208 /* Base */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -663,6 +867,81 @@
 			};
 			name = Release;
 		};
+		BEE9749119A77B63006B1208 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GrayScottOSX/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Debug;
+		};
+		BEE9749219A77B63006B1208 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = GrayScottOSX/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		BEE9749319A77B63006B1208 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GrayScottOSXTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrayScottOSX.app/Contents/MacOS/GrayScottOSX";
+			};
+			name = Debug;
+		};
+		BEE9749419A77B63006B1208 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GrayScottOSXTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrayScottOSX.app/Contents/MacOS/GrayScottOSX";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -700,12 +979,30 @@
 				BE3A831419A651940037C740 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BE3A832519A6600D0037C740 /* Build configuration list for PBXNativeTarget "ThreadsExperimentTests-OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BE3A832619A6600D0037C740 /* Debug */,
 				BE3A832719A6600D0037C740 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEE9749519A77B63006B1208 /* Build configuration list for PBXNativeTarget "GrayScottOSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEE9749119A77B63006B1208 /* Debug */,
+				BEE9749219A77B63006B1208 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		BEE9749619A77B63006B1208 /* Build configuration list for PBXNativeTarget "GrayScottOSXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEE9749319A77B63006B1208 /* Debug */,
+				BEE9749419A77B63006B1208 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

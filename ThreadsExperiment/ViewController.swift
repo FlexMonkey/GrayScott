@@ -16,7 +16,7 @@ class ViewController: UIViewController
     @IBOutlet var parameterButtonBar: UISegmentedControl!
     @IBOutlet var parameterValueLabel: UILabel!
     
-    var parameters = GrayScottParmeters(f: 0.023, k: 0.0795, dU: 0.16, dV: 0.08)
+    var parameters = GrayScottParameters(f: 0.023, k: 0.0795, dU: 0.16, dV: 0.08)
 
     var grayScottData:[GrayScottStruct] = {
         
@@ -47,15 +47,8 @@ class ViewController: UIViewController
     override func viewDidLoad()
     {
         
-        let timer = NSTimer.scheduledTimerWithTimeInterval(0.025, target: self, selector: Selector("timerHandler"), userInfo: nil, repeats: true);
-        
         updateLabel();
         dispatchSolverOperation()
-    }
-
-    func timerHandler()
-    {
-        //self.dispatchSolverOperation()
     }
     
     @IBAction func sliderValueChangeHandler(sender: AnyObject)
@@ -143,7 +136,7 @@ class ViewController: UIViewController
             dispatch_async(dispatch_get_main_queue()) {
                 if let s = weakSelf {
                     s.isRendering = false
-                    s.imageView.image = newImage
+                    s.imageView.image = newImage as? UIImage
                     if s.lastFrameCountTime.timeIntervalSinceNow < -1.0 {
                         println("Frame count = \(s.frameCount) Solve count: \(s.solveCount)")
                         s.frameCount = 0

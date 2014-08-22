@@ -9,7 +9,7 @@
 import UIKit
 import XCTest
 
-let gsParams = GrayScottParmeters(f: 0.023, k: 0.0795, dU: 0.16, dV: 0.08)
+let gsParams = GrayScottParameters(f: 0.023, k: 0.0795, dU: 0.16, dV: 0.08)
 
 public struct Constants
 {

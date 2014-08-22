@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Constants
+struct Constants
 {
     static let LENGTH : Int = 245
     static let LENGTH_MINUS_ONE : Int = LENGTH - 1

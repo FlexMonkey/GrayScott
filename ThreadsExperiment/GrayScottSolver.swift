@@ -13,17 +13,15 @@
 
 import Foundation
 
-public struct GrayScottParmeters {
+public struct GrayScottParameters {
     public var f : Double
     public var k : Double
     public var dU : Double
     public var dV : Double
 }
 
-private let solverQueues = 2
-
 private var solverstatsCount = 0
-public func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:GrayScottParmeters)->[GrayScottStruct] {
+public func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:GrayScottParameters)->[GrayScottStruct] {
     
     let stats = solverstatsCount % 1024 == 0
     var startTime : CFAbsoluteTime?
@@ -35,14 +33,15 @@ public func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:Gr
     //var queues
     var outputArray = [GrayScottStruct](count: grayScottConstData.count, repeatedValue: GrayScottStruct(u: 0, v: 0))
     
-    let queue = dispatch_queue_create("com.humanfriendly.grayscottsolver",  DISPATCH_QUEUE_CONCURRENT)
+    //let queue = dispatch_queue_create("com.humanfriendly.grayscottsolver",  DISPATCH_QUEUE_CONCURRENT)
+    let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
     
     let sectionSize:Int = Constants.LENGTH/solverQueues
     var sectionIndexes = map(0...solverQueues) { Int($0 * sectionSize) }
     sectionIndexes[solverQueues] = Constants.LENGTH
     
     for i in 0..<solverQueues {
-        dispatch_async(queue) {
+            dispatch_async(queue) {
             grayScottPartialSolver(grayScottConstData, parameters, sectionIndexes[i], sectionIndexes[i + 1], &outputArray)
             dispatch_semaphore_signal(semaphore)
         }
@@ -59,7 +58,7 @@ public func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:Gr
     return outputArray
 }
 
-private func grayScottPartialSolver(grayScottConstData: [GrayScottStruct], parameters: GrayScottParmeters, startLine:Int, endLine:Int, inout outputArray: [GrayScottStruct]) {
+private func grayScottPartialSolver(grayScottConstData: [GrayScottStruct], parameters: GrayScottParameters, startLine:Int, endLine:Int, inout outputArray: [GrayScottStruct]) {
     
     assert(startLine >= 0)
     assert(endLine <= Constants.LENGTH)
