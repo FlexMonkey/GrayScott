@@ -27,7 +27,7 @@
 		BE3A832A19A6607A0037C740 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67FA83198E55420009D31E /* IntExtension.swift */; };
 		BE3A832B19A6607E0037C740 /* GrayScottSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */; };
 		BE623416198D524000C0A592 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623415198D524000C0A592 /* DoubleExtension.swift */; };
-		BE623418198DFE2100C0A592 /* GrayScottRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* GrayScottRenderer.swift */; };
+		BE623418198DFE2100C0A592 /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* PixelData.swift */; };
 		BE67FA84198E55420009D31E /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67FA83198E55420009D31E /* IntExtension.swift */; };
 		BEE9747D19A77B63006B1208 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9747C19A77B63006B1208 /* main.swift */; };
 		BEE9747F19A77B63006B1208 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9747E19A77B63006B1208 /* AppDelegate.swift */; };
@@ -41,7 +41,7 @@
 		BEE974A619A7DE0C006B1208 /* GrayScottStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF4B99C1991EA37004FC621 /* GrayScottStruct.swift */; };
 		BEE974A819A7DF1C006B1208 /* NSImageFromBitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE974A719A7DF1C006B1208 /* NSImageFromBitmap.swift */; };
 		BEE974AB19A7DFCA006B1208 /* UIImageFromBitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE974AA19A7DFCA006B1208 /* UIImageFromBitmap.swift */; };
-		BEE974AC19A7E50E006B1208 /* GrayScottRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* GrayScottRenderer.swift */; };
+		BEE974AC19A7E50E006B1208 /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* PixelData.swift */; };
 		BEE974AD19A7E515006B1208 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623415198D524000C0A592 /* DoubleExtension.swift */; };
 		BEE974AE19A7E519006B1208 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67FA83198E55420009D31E /* IntExtension.swift */; };
 /* End PBXBuildFile section */
@@ -84,7 +84,7 @@
 		BE3A832219A6600D0037C740 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE3A832319A6600D0037C740 /* ThreadsExperimentTests_OSX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsExperimentTests_OSX.swift; sourceTree = "<group>"; };
 		BE623415198D524000C0A592 /* DoubleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
-		BE623417198DFE2100C0A592 /* GrayScottRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayScottRenderer.swift; sourceTree = "<group>"; };
+		BE623417198DFE2100C0A592 /* PixelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PixelData.swift; sourceTree = "<group>"; };
 		BE67FA83198E55420009D31E /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		BEE9747819A77B63006B1208 /* GrayScottOSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrayScottOSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEE9747B19A77B63006B1208 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -160,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				3EF4B99C1991EA37004FC621 /* GrayScottStruct.swift */,
+				BE623417198DFE2100C0A592 /* PixelData.swift */,
 			);
 			name = structs;
 			sourceTree = "<group>";
@@ -237,7 +238,6 @@
 			isa = PBXGroup;
 			children = (
 				BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */,
-				BE623417198DFE2100C0A592 /* GrayScottRenderer.swift */,
 			);
 			name = grayScottOperations;
 			sourceTree = "<group>";
@@ -553,7 +553,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE0E5C6D198CA26700395741 /* ViewController.swift in Sources */,
-				BE623418198DFE2100C0A592 /* GrayScottRenderer.swift in Sources */,
+				BE623418198DFE2100C0A592 /* PixelData.swift in Sources */,
 				BE67FA84198E55420009D31E /* IntExtension.swift in Sources */,
 				BE623416198D524000C0A592 /* DoubleExtension.swift in Sources */,
 				BEE974AB19A7DFCA006B1208 /* UIImageFromBitmap.swift in Sources */,
@@ -602,7 +602,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEE974A819A7DF1C006B1208 /* NSImageFromBitmap.swift in Sources */,
-				BEE974AC19A7E50E006B1208 /* GrayScottRenderer.swift in Sources */,
+				BEE974AC19A7E50E006B1208 /* PixelData.swift in Sources */,
 				BEE9747F19A77B63006B1208 /* AppDelegate.swift in Sources */,
 				BEE974AE19A7E519006B1208 /* IntExtension.swift in Sources */,
 				BEE974AD19A7E515006B1208 /* DoubleExtension.swift in Sources */,
