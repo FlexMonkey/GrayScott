@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3E7AECD81997E5FE00EFC5EC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AECD71997E5FE00EFC5EC /* Constants.swift */; };
 		3EF4B99D1991EA37004FC621 /* GrayScottStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF4B99C1991EA37004FC621 /* GrayScottStruct.swift */; };
-		3EF4B99F1991ECAF004FC621 /* GrayScottProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF4B99E1991ECAF004FC621 /* GrayScottProtocol.swift */; };
 		BE0E5C68198CA26700395741 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C67198CA26700395741 /* AppDelegate.swift */; };
 		BE0E5C6B198CA26700395741 /* ThreadsExperiment.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C69198CA26700395741 /* ThreadsExperiment.xcdatamodeld */; };
 		BE0E5C6D198CA26700395741 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C6C198CA26700395741 /* ViewController.swift */; };
@@ -17,6 +16,16 @@
 		BE0E5C72198CA26700395741 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE0E5C71198CA26700395741 /* Images.xcassets */; };
 		BE0E5C7E198CA26700395741 /* ThreadsExperimentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C7D198CA26700395741 /* ThreadsExperimentTests.swift */; };
 		BE0E5C8B198CD7F400395741 /* GrayScottSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */; };
+		BE3A831219A651940037C740 /* ThreadsExperimentUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3A831119A651940037C740 /* ThreadsExperimentUnitTests.swift */; };
+		BE3A831619A651B60037C740 /* GrayScottSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */; };
+		BE3A831819A652820037C740 /* GrayScottStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF4B99C1991EA37004FC621 /* GrayScottStruct.swift */; };
+		BE3A831919A65D180037C740 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67FA83198E55420009D31E /* IntExtension.swift */; };
+		BE3A831A19A65D1D0037C740 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623415198D524000C0A592 /* DoubleExtension.swift */; };
+		BE3A832419A6600D0037C740 /* ThreadsExperimentTests_OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3A832319A6600D0037C740 /* ThreadsExperimentTests_OSX.swift */; };
+		BE3A832819A660710037C740 /* GrayScottStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF4B99C1991EA37004FC621 /* GrayScottStruct.swift */; };
+		BE3A832919A660760037C740 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623415198D524000C0A592 /* DoubleExtension.swift */; };
+		BE3A832A19A6607A0037C740 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67FA83198E55420009D31E /* IntExtension.swift */; };
+		BE3A832B19A6607E0037C740 /* GrayScottSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */; };
 		BE623416198D524000C0A592 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623415198D524000C0A592 /* DoubleExtension.swift */; };
 		BE623418198DFE2100C0A592 /* GrayScottRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* GrayScottRenderer.swift */; };
 		BE67FA84198E55420009D31E /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67FA83198E55420009D31E /* IntExtension.swift */; };
@@ -35,7 +44,6 @@
 /* Begin PBXFileReference section */
 		3E7AECD71997E5FE00EFC5EC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3EF4B99C1991EA37004FC621 /* GrayScottStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayScottStruct.swift; sourceTree = "<group>"; };
-		3EF4B99E1991ECAF004FC621 /* GrayScottProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayScottProtocol.swift; sourceTree = "<group>"; };
 		BE0E5C62198CA26700395741 /* ThreadsExperiment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThreadsExperiment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE0E5C66198CA26700395741 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE0E5C67198CA26700395741 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +55,12 @@
 		BE0E5C7C198CA26700395741 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE0E5C7D198CA26700395741 /* ThreadsExperimentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsExperimentTests.swift; sourceTree = "<group>"; };
 		BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayScottSolver.swift; sourceTree = "<group>"; };
+		BE3A830D19A651940037C740 /* ThreadsExperimentUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThreadsExperimentUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE3A831019A651940037C740 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE3A831119A651940037C740 /* ThreadsExperimentUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsExperimentUnitTests.swift; sourceTree = "<group>"; };
+		BE3A831F19A6600D0037C740 /* ThreadsExperimentTests-OSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ThreadsExperimentTests-OSX.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE3A832219A6600D0037C740 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE3A832319A6600D0037C740 /* ThreadsExperimentTests_OSX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsExperimentTests_OSX.swift; sourceTree = "<group>"; };
 		BE623415198D524000C0A592 /* DoubleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		BE623417198DFE2100C0A592 /* GrayScottRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayScottRenderer.swift; sourceTree = "<group>"; };
 		BE67FA83198E55420009D31E /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
@@ -61,6 +75,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BE0E5C74198CA26700395741 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE3A830A19A651940037C740 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE3A831C19A6600D0037C740 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -82,7 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				3EF4B99C1991EA37004FC621 /* GrayScottStruct.swift */,
-				3EF4B99E1991ECAF004FC621 /* GrayScottProtocol.swift */,
 			);
 			name = structs;
 			sourceTree = "<group>";
@@ -92,6 +119,8 @@
 			children = (
 				BE0E5C64198CA26700395741 /* ThreadsExperiment */,
 				BE0E5C7A198CA26700395741 /* ThreadsExperimentTests */,
+				BE3A830E19A651940037C740 /* ThreadsExperimentUnitTests */,
+				BE3A832019A6600D0037C740 /* ThreadsExperimentTests-OSX */,
 				BE0E5C63198CA26700395741 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -101,6 +130,8 @@
 			children = (
 				BE0E5C62198CA26700395741 /* ThreadsExperiment.app */,
 				BE0E5C77198CA26700395741 /* ThreadsExperimentTests.xctest */,
+				BE3A830D19A651940037C740 /* ThreadsExperimentUnitTests.xctest */,
+				BE3A831F19A6600D0037C740 /* ThreadsExperimentTests-OSX.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,6 +187,40 @@
 			name = grayScottOperations;
 			sourceTree = "<group>";
 		};
+		BE3A830E19A651940037C740 /* ThreadsExperimentUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				BE3A831119A651940037C740 /* ThreadsExperimentUnitTests.swift */,
+				BE3A830F19A651940037C740 /* Supporting Files */,
+			);
+			path = ThreadsExperimentUnitTests;
+			sourceTree = "<group>";
+		};
+		BE3A830F19A651940037C740 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BE3A831019A651940037C740 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BE3A832019A6600D0037C740 /* ThreadsExperimentTests-OSX */ = {
+			isa = PBXGroup;
+			children = (
+				BE3A832319A6600D0037C740 /* ThreadsExperimentTests_OSX.swift */,
+				BE3A832119A6600D0037C740 /* Supporting Files */,
+			);
+			path = "ThreadsExperimentTests-OSX";
+			sourceTree = "<group>";
+		};
+		BE3A832119A6600D0037C740 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BE3A832219A6600D0037C740 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		BE623414198D522D00C0A592 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +268,40 @@
 			productReference = BE0E5C77198CA26700395741 /* ThreadsExperimentTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		BE3A830C19A651940037C740 /* ThreadsExperimentUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE3A831519A651940037C740 /* Build configuration list for PBXNativeTarget "ThreadsExperimentUnitTests" */;
+			buildPhases = (
+				BE3A830919A651940037C740 /* Sources */,
+				BE3A830A19A651940037C740 /* Frameworks */,
+				BE3A830B19A651940037C740 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ThreadsExperimentUnitTests;
+			productName = ThreadsExperimentUnitTests;
+			productReference = BE3A830D19A651940037C740 /* ThreadsExperimentUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BE3A831E19A6600D0037C740 /* ThreadsExperimentTests-OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE3A832519A6600D0037C740 /* Build configuration list for PBXNativeTarget "ThreadsExperimentTests-OSX" */;
+			buildPhases = (
+				BE3A831B19A6600D0037C740 /* Sources */,
+				BE3A831C19A6600D0037C740 /* Frameworks */,
+				BE3A831D19A6600D0037C740 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ThreadsExperimentTests-OSX";
+			productName = "ThreadsExperimentTests-OSX";
+			productReference = BE3A831F19A6600D0037C740 /* ThreadsExperimentTests-OSX.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -221,6 +320,12 @@
 						DevelopmentTeam = PPUD3Y4398;
 						TestTargetID = BE0E5C61198CA26700395741;
 					};
+					BE3A830C19A651940037C740 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					BE3A831E19A6600D0037C740 = {
+						CreatedOnToolsVersion = 6.0;
+					};
 				};
 			};
 			buildConfigurationList = BE0E5C5D198CA26700395741 /* Build configuration list for PBXProject "ThreadsExperiment" */;
@@ -238,6 +343,8 @@
 			targets = (
 				BE0E5C61198CA26700395741 /* ThreadsExperiment */,
 				BE0E5C76198CA26700395741 /* ThreadsExperimentTests */,
+				BE3A830C19A651940037C740 /* ThreadsExperimentUnitTests */,
+				BE3A831E19A6600D0037C740 /* ThreadsExperimentTests-OSX */,
 			);
 		};
 /* End PBXProject section */
@@ -259,6 +366,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BE3A830B19A651940037C740 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE3A831D19A6600D0037C740 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -266,7 +387,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EF4B99F1991ECAF004FC621 /* GrayScottProtocol.swift in Sources */,
 				BE0E5C6D198CA26700395741 /* ViewController.swift in Sources */,
 				BE623418198DFE2100C0A592 /* GrayScottRenderer.swift in Sources */,
 				BE67FA84198E55420009D31E /* IntExtension.swift in Sources */,
@@ -284,6 +404,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE0E5C7E198CA26700395741 /* ThreadsExperimentTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE3A830919A651940037C740 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE3A831A19A65D1D0037C740 /* DoubleExtension.swift in Sources */,
+				BE3A831219A651940037C740 /* ThreadsExperimentUnitTests.swift in Sources */,
+				BE3A831819A652820037C740 /* GrayScottStruct.swift in Sources */,
+				BE3A831619A651B60037C740 /* GrayScottSolver.swift in Sources */,
+				BE3A831919A65D180037C740 /* IntExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE3A831B19A6600D0037C740 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE3A832919A660760037C740 /* DoubleExtension.swift in Sources */,
+				BE3A832A19A6607A0037C740 /* IntExtension.swift in Sources */,
+				BE3A832B19A6607E0037C740 /* GrayScottSolver.swift in Sources */,
+				BE3A832419A6600D0037C740 /* ThreadsExperimentTests_OSX.swift in Sources */,
+				BE3A832819A660710037C740 /* GrayScottStruct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +596,73 @@
 			};
 			name = Release;
 		};
+		BE3A831319A651940037C740 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ThreadsExperimentUnitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BE3A831419A651940037C740 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ThreadsExperimentUnitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		BE3A832619A6600D0037C740 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ThreadsExperimentTests-OSX/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BE3A832719A6600D0037C740 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ThreadsExperimentTests-OSX/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -481,6 +692,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		BE3A831519A651940037C740 /* Build configuration list for PBXNativeTarget "ThreadsExperimentUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE3A831319A651940037C740 /* Debug */,
+				BE3A831419A651940037C740 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		BE3A832519A6600D0037C740 /* Build configuration list for PBXNativeTarget "ThreadsExperimentTests-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE3A832619A6600D0037C740 /* Debug */,
+				BE3A832719A6600D0037C740 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 

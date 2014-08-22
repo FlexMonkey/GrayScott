@@ -12,22 +12,63 @@
 //
 
 import Foundation
-import UIKit
 
-struct GrayScottParmeters {
-    var f : Double
-    var k : Double
-    var dU : Double
-    var dV : Double
+public struct GrayScottParmeters {
+    public var f : Double
+    public var k : Double
+    public var dU : Double
+    public var dV : Double
 }
 
+private let solverQueues = 2
 
-func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:GrayScottParmeters)->[GrayScottStruct] {
-    let startTime : CFAbsoluteTime = CFAbsoluteTimeGetCurrent();
+private var solverstatsCount = 0
+public func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:GrayScottParmeters)->[GrayScottStruct] {
     
-    var index : Int = 0;
-    var outputArray = grayScottConstData // Copy to get array big enough
-    for i in 0 ..< Constants.LENGTH
+    let stats = solverstatsCount % 1024 == 0
+    var startTime : CFAbsoluteTime?
+    if stats {
+        startTime = CFAbsoluteTimeGetCurrent();
+    }
+    
+    let semaphore = dispatch_semaphore_create(0)
+    //var queues
+    var outputArray = [GrayScottStruct](count: grayScottConstData.count, repeatedValue: GrayScottStruct(u: 0, v: 0))
+    
+    let queue = dispatch_queue_create("com.humanfriendly.grayscottsolver",  DISPATCH_QUEUE_CONCURRENT)
+    
+    let sectionSize:Int = Constants.LENGTH/solverQueues
+    var sectionIndexes = map(0...solverQueues) { Int($0 * sectionSize) }
+    sectionIndexes[solverQueues] = Constants.LENGTH
+    
+    for i in 0..<solverQueues {
+        dispatch_async(queue) {
+            grayScottPartialSolver(grayScottConstData, parameters, sectionIndexes[i], sectionIndexes[i + 1], &outputArray)
+            dispatch_semaphore_signal(semaphore)
+        }
+    }
+    for i in 0..<solverQueues {
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+    }
+    
+    if stats {
+        println("S  SOLVER:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime!));
+    }
+    ++solverstatsCount
+    
+    return outputArray
+}
+
+private func grayScottPartialSolver(grayScottConstData: [GrayScottStruct], parameters: GrayScottParmeters, startLine:Int, endLine:Int, inout outputArray: [GrayScottStruct]) {
+    
+    assert(startLine >= 0)
+    assert(endLine <= Constants.LENGTH)
+    assert(outputArray.count == Constants.LENGTH_SQUARED)
+    assert(grayScottConstData.count == Constants.LENGTH_SQUARED)
+    
+    var index : Int = startLine * Constants.LENGTH
+    
+    for i in startLine ..< endLine
     {
         for j in 0 ..< Constants.LENGTH
         {
@@ -51,9 +92,4 @@ func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:GrayScott
             outputArray[index++] = outputPixel;
         }
     }
-
-    
-    println("S  SOLVER:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime));
-    
-    return outputArray
 }
