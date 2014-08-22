@@ -16,10 +16,7 @@ class ViewController: UIViewController
     @IBOutlet var parameterButtonBar: UISegmentedControl!
     @IBOutlet var parameterValueLabel: UILabel!
     
-    var f : Double = 0.023;
-    var k : Double = 0.0795;
-    var dU : Double = 0.16;
-    var dV : Double = 0.08;
+    var parameters = GrayScottParmeters(f: 0.023, k: 0.0795, dU: 0.16, dV: 0.08)
 
     var grayScottData:[GrayScottStruct] = {
         
@@ -66,15 +63,15 @@ class ViewController: UIViewController
         switch parameterButtonBar.selectedSegmentIndex
         {
             case 0:
-                f = Double(parameterSlider.value);
+                parameters.f = Double(parameterSlider.value);
             case 1:
-                k = Double(parameterSlider.value);
+                parameters.k = Double(parameterSlider.value);
             case 2:
-                dU = Double(parameterSlider.value);
+                parameters.dU = Double(parameterSlider.value);
             case 3:
-                dV = Double(parameterSlider.value);
+                parameters.dV = Double(parameterSlider.value);
             default:
-                f = Double(parameterSlider.value);
+                parameters.f = Double(parameterSlider.value);
         }
         
         updateLabel();
@@ -91,17 +88,17 @@ class ViewController: UIViewController
         switch parameterButtonBar.selectedSegmentIndex
         {
             case 0:
-                parameterValueLabel.text = "f = " + f.format();
-                parameterSlider.value = Float(f);
+                parameterValueLabel.text = "f = " + parameters.f.format()
+                parameterSlider.value = Float(parameters.f)
             case 1:
-                parameterValueLabel.text = "k = " + k.format();
-                parameterSlider.value = Float(k);
+                parameterValueLabel.text = "k = " + parameters.k.format()
+                parameterSlider.value = Float(parameters.k)
             case 2:
-                parameterValueLabel.text = "Du = " + dU.format();
-                parameterSlider.value = Float(dU);
+                parameterValueLabel.text = "Du = " + parameters.dU.format()
+                parameterSlider.value = Float(parameters.dU)
             case 3:
-                parameterValueLabel.text = "Dv = " + dV.format();
-                parameterSlider.value = Float(dV);
+                parameterValueLabel.text = "Dv = " + parameters.dV.format()
+                parameterSlider.value = Float(parameters.dV)
             default:
                 parameterValueLabel.text = "";
         }
@@ -113,7 +110,7 @@ class ViewController: UIViewController
     private final func dispatchSolverOperation()
     {
         let dataCopy = grayScottData
-        let params = GrayScottParmeters(f: f, k: k, dU: dU, dV: dV)
+        let params = parameters
         weak var weakSelf = self
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             let newGSData = grayScottSolver(dataCopy, params)
