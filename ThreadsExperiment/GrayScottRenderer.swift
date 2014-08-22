@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct PixelData {
+public struct PixelData {
     var a:UInt8 = 255
     var r:UInt8
     var g:UInt8
     var b:UInt8
 }
-
+/*
 private var statsCount = 0
 func renderGrayScott(grayScottData:[GrayScottStruct])->NSObject
 {
@@ -44,3 +44,4 @@ func renderGrayScott(grayScottData:[GrayScottStruct])->NSObject
     ++statsCount
     return outputImage
 }
+*/

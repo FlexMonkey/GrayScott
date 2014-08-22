@@ -33,11 +33,7 @@ class GSWindowController: NSWindowController {
             }
         }
         return data
-        }() {
-        didSet {
-            dispatchRender()
-        }
-    }
+        }()
     
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -55,38 +51,13 @@ class GSWindowController: NSWindowController {
         let params = parameters
         weak var weakSelf = self
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            let newGSData = grayScottSolver(dataCopy, params)
+            let (newGSData, pixelData) = grayScottSolver(dataCopy, params)
             dispatch_async(dispatch_get_main_queue()) {
                 if let s = weakSelf {
                     ++s.solveCount
                     s.grayScottData = newGSData
                     s.dispatchSolverOperation()
-                }
-            }
-        }
-    }
-    private var renderedCount = 0
-    private var skippedCount = 0
-    private var isRendering = false
-    private final func dispatchRender() {
-        if isRendering {
-            ++skippedCount
-            if skippedCount % 256 == 0 {
-                println("Rendering bottleneck, render skipped. Skipped:\(skippedCount) Rendered: \(renderedCount) Skipped: \(100 * skippedCount / (skippedCount + renderedCount))")
-            
-            }
-            return
-        }
-        ++renderedCount
-        isRendering = true
-        let gsData = self.grayScottData
-        weak var weakSelf = self
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            let newImage = renderGrayScott(gsData)
-            dispatch_async(dispatch_get_main_queue()) {
-                if let s = weakSelf {
-                    s.isRendering = false
-                    s.imageView.image = newImage as? NSImage
+                    s.imageView.image = imageFromARGB32Bitmap(pixelData, UInt(Constants.LENGTH), UInt(Constants.LENGTH))
                     if s.lastFrameCountTime.timeIntervalSinceNow < -1.0 {
                         println("Frame count = \(s.frameCount) Solve count: \(s.solveCount)")
                         s.frameCount = 0
@@ -94,11 +65,9 @@ class GSWindowController: NSWindowController {
                         s.lastFrameCountTime = NSDate()
                     }
                     ++s.frameCount
-                    
                 }
             }
+            
         }
     }
-
-
 }
