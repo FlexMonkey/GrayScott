@@ -129,9 +129,9 @@ class ViewController: UIViewController
     private final func dispatchRender() {
         if isRendering {
             ++skippedCount
-            if skippedCount % 256 == 0 {
+            //if skippedCount % 256 == 0 {
                 println("Rendering bottleneck, render skipped. Skipped:\(skippedCount) Rendered: \(renderedCount) Skipped: \(100 * skippedCount / (skippedCount + renderedCount))")
-            }
+            //}
             return
         }
         ++renderedCount
