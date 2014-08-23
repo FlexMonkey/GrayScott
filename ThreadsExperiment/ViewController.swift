@@ -93,32 +93,40 @@ class ViewController: UIViewController
         }
     }
     
-    private var lastFrameCountTime = NSDate()
-    private var frameCount = 0
-    private var solveCount = 0
     private final func dispatchSolverOperation()
     {
-        let dataCopy = grayScottData
+        var lastFrameCountTime = CFAbsoluteTimeGetCurrent()
+        var frameCount = 0
+        var solveCount:Int32 = 0
+        var waitingFrames:Int32 = 0
+        var data = grayScottData
         let params = parameters
         weak var weakSelf = self
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            let (newGSData, pixelData) = grayScottSolver(dataCopy, params)
-            dispatch_async(dispatch_get_main_queue()) {
+            while (true) {
+                var pixelData:[PixelData]
+                (data, pixelData) = grayScottSolver(data, params)
+                let dataCopy = data
                 if let s = weakSelf {
-                    ++s.solveCount
-                    s.grayScottData = newGSData
-                    s.dispatchSolverOperation()
-                    s.imageView.image = imageFromARGB32Bitmap(pixelData, UInt(Constants.LENGTH), UInt(Constants.LENGTH))
-                    if s.lastFrameCountTime.timeIntervalSinceNow < -1.0 {
-                        println("Frame count = \(s.frameCount) Solve count: \(s.solveCount)")
-                        s.frameCount = 0
-                        s.solveCount = 0
-                        s.lastFrameCountTime = NSDate()
-                    }
-                    ++s.frameCount
+                    OSAtomicIncrement32(&solveCount)
+                    OSAtomicIncrement32(&waitingFrames)
+                    if waitingFrames < 3 {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            
+                            s.grayScottData = data
+                            s.imageView.image = imageFromARGB32Bitmap(pixelData, UInt(Constants.LENGTH), UInt(Constants.LENGTH))
+                            if CFAbsoluteTimeGetCurrent() - lastFrameCountTime > 1.0 {
+                                println("Frame count = \(frameCount) Solve count: \(solveCount)")
+                                frameCount = 0
+                                solveCount = 0
+                                lastFrameCountTime = CFAbsoluteTimeGetCurrent()
+                            }
+                            ++frameCount
+                            OSAtomicDecrement32(&waitingFrames)
+                        }
+                    } else { OSAtomicDecrement32(&waitingFrames) }
                 }
             }
-            
         }
     }
 }
