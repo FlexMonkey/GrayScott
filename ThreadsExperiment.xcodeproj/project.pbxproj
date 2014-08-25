@@ -29,6 +29,7 @@
 		BE623416198D524000C0A592 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623415198D524000C0A592 /* DoubleExtension.swift */; };
 		BE623418198DFE2100C0A592 /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* PixelData.swift */; };
 		BE67FA84198E55420009D31E /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67FA83198E55420009D31E /* IntExtension.swift */; };
+		BE8CC40219ABEF8D008F1D1D /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* PixelData.swift */; };
 		BEE9747D19A77B63006B1208 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9747C19A77B63006B1208 /* main.swift */; };
 		BEE9747F19A77B63006B1208 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9747E19A77B63006B1208 /* AppDelegate.swift */; };
 		BEE9748119A77B63006B1208 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEE9748019A77B63006B1208 /* Images.xcassets */; };
@@ -163,11 +164,13 @@
 				BE623417198DFE2100C0A592 /* PixelData.swift */,
 			);
 			name = structs;
+			path = ThreadsExperiment;
 			sourceTree = "<group>";
 		};
 		BE0E5C59198CA26700395741 = {
 			isa = PBXGroup;
 			children = (
+				BE8CC40119ABEF52008F1D1D /* Common Code */,
 				BE0E5C64198CA26700395741 /* ThreadsExperiment */,
 				BE0E5C7A198CA26700395741 /* ThreadsExperimentTests */,
 				BE3A830E19A651940037C740 /* ThreadsExperimentUnitTests */,
@@ -194,11 +197,7 @@
 		BE0E5C64198CA26700395741 /* ThreadsExperiment */ = {
 			isa = PBXGroup;
 			children = (
-				BEE974A919A7DF44006B1208 /* image processing */,
 				3E7AECD61997E5E700EFC5EC /* consts */,
-				3EF4B99B1991EA1D004FC621 /* structs */,
-				BE623414198D522D00C0A592 /* extensions */,
-				BE0E5C89198CD7B200395741 /* grayScottOperations */,
 				BE0E5C67198CA26700395741 /* AppDelegate.swift */,
 				BE0E5C6C198CA26700395741 /* ViewController.swift */,
 				BE0E5C6E198CA26700395741 /* Main.storyboard */,
@@ -240,6 +239,7 @@
 				BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */,
 			);
 			name = grayScottOperations;
+			path = ThreadsExperiment;
 			sourceTree = "<group>";
 		};
 		BE3A830E19A651940037C740 /* ThreadsExperimentUnitTests */ = {
@@ -283,6 +283,18 @@
 				BE67FA83198E55420009D31E /* IntExtension.swift */,
 			);
 			name = extensions;
+			path = ThreadsExperiment;
+			sourceTree = "<group>";
+		};
+		BE8CC40119ABEF52008F1D1D /* Common Code */ = {
+			isa = PBXGroup;
+			children = (
+				BE0E5C89198CD7B200395741 /* grayScottOperations */,
+				BE623414198D522D00C0A592 /* extensions */,
+				3EF4B99B1991EA1D004FC621 /* structs */,
+				BEE974A919A7DF44006B1208 /* image processing */,
+			);
+			name = "Common Code";
 			sourceTree = "<group>";
 		};
 		BEE9747919A77B63006B1208 /* GrayScottOSX */ = {
@@ -332,6 +344,7 @@
 				BEE974AA19A7DFCA006B1208 /* UIImageFromBitmap.swift */,
 			);
 			name = "image processing";
+			path = ThreadsExperiment;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -618,6 +631,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE8CC40219ABEF8D008F1D1D /* PixelData.swift in Sources */,
 				BEE9749019A77B63006B1208 /* GrayScottOSXTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -997,6 +1011,7 @@
 				BEE9749219A77B63006B1208 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BEE9749619A77B63006B1208 /* Build configuration list for PBXNativeTarget "GrayScottOSXTests" */ = {
 			isa = XCConfigurationList;
@@ -1005,6 +1020,7 @@
 				BEE9749419A77B63006B1208 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
