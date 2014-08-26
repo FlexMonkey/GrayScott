@@ -9,8 +9,6 @@
 import UIKit
 import CoreData
 
-public let solverQueues = 2
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             
