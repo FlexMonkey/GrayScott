@@ -13,7 +13,7 @@
 //  Created by Joseph on 21/08/2014.
 //  Copyright (c) 2014 Simon Gladman. All rights reserved.
 //
-
+public let solverQueues = 8
 import Foundation
 import XCTest
 

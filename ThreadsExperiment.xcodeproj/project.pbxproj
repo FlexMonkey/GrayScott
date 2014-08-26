@@ -26,6 +26,9 @@
 		BE3A832919A660760037C740 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623415198D524000C0A592 /* DoubleExtension.swift */; };
 		BE3A832A19A6607A0037C740 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67FA83198E55420009D31E /* IntExtension.swift */; };
 		BE3A832B19A6607E0037C740 /* GrayScottSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */; };
+		BE4069DD19ABFC860023AAA4 /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* PixelData.swift */; };
+		BE4069DE19ABFC870023AAA4 /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* PixelData.swift */; };
+		BE4069DF19ABFC880023AAA4 /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* PixelData.swift */; };
 		BE623416198D524000C0A592 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623415198D524000C0A592 /* DoubleExtension.swift */; };
 		BE623418198DFE2100C0A592 /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* PixelData.swift */; };
 		BE67FA84198E55420009D31E /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67FA83198E55420009D31E /* IntExtension.swift */; };
@@ -582,6 +585,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE4069DD19ABFC860023AAA4 /* PixelData.swift in Sources */,
 				BE0E5C7E198CA26700395741 /* ThreadsExperimentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -590,6 +594,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE4069DE19ABFC870023AAA4 /* PixelData.swift in Sources */,
 				BE3A831A19A65D1D0037C740 /* DoubleExtension.swift in Sources */,
 				BE3A831219A651940037C740 /* ThreadsExperimentUnitTests.swift in Sources */,
 				BE3A831819A652820037C740 /* GrayScottStruct.swift in Sources */,
@@ -602,6 +607,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE4069DF19ABFC880023AAA4 /* PixelData.swift in Sources */,
 				BE3A832919A660760037C740 /* DoubleExtension.swift in Sources */,
 				BE3A832A19A6607A0037C740 /* IntExtension.swift in Sources */,
 				BE3A832B19A6607E0037C740 /* GrayScottSolver.swift in Sources */,
@@ -705,7 +711,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -742,7 +748,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;

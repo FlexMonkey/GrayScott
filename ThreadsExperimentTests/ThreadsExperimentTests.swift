@@ -8,7 +8,7 @@
 
 import UIKit
 import XCTest
-
+public let solverQueues = 8
 class ThreadsExperimentTests: XCTestCase {
     
     override func setUp() {
