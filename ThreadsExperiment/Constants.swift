@@ -12,7 +12,7 @@ public let solverQueues = 2
 
 struct Constants
 {
-    static let LENGTH : Int = 245
+    static let LENGTH : Int = 256
     static let LENGTH_MINUS_ONE : Int = LENGTH - 1
     static let LENGTH_SQUARED : Int = LENGTH * LENGTH
 }
