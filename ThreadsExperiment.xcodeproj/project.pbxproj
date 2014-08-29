@@ -19,19 +19,16 @@
 		BE3A831219A651940037C740 /* ThreadsExperimentUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3A831119A651940037C740 /* ThreadsExperimentUnitTests.swift */; };
 		BE3A831619A651B60037C740 /* GrayScottSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */; };
 		BE3A831819A652820037C740 /* GrayScottStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF4B99C1991EA37004FC621 /* GrayScottStruct.swift */; };
-		BE3A831919A65D180037C740 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67FA83198E55420009D31E /* IntExtension.swift */; };
 		BE3A831A19A65D1D0037C740 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623415198D524000C0A592 /* DoubleExtension.swift */; };
 		BE3A832419A6600D0037C740 /* ThreadsExperimentTests_OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3A832319A6600D0037C740 /* ThreadsExperimentTests_OSX.swift */; };
 		BE3A832819A660710037C740 /* GrayScottStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF4B99C1991EA37004FC621 /* GrayScottStruct.swift */; };
 		BE3A832919A660760037C740 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623415198D524000C0A592 /* DoubleExtension.swift */; };
-		BE3A832A19A6607A0037C740 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67FA83198E55420009D31E /* IntExtension.swift */; };
 		BE3A832B19A6607E0037C740 /* GrayScottSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E5C8A198CD7F400395741 /* GrayScottSolver.swift */; };
 		BE4069DD19ABFC860023AAA4 /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* PixelData.swift */; };
 		BE4069DE19ABFC870023AAA4 /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* PixelData.swift */; };
 		BE4069DF19ABFC880023AAA4 /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* PixelData.swift */; };
 		BE623416198D524000C0A592 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623415198D524000C0A592 /* DoubleExtension.swift */; };
 		BE623418198DFE2100C0A592 /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* PixelData.swift */; };
-		BE67FA84198E55420009D31E /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67FA83198E55420009D31E /* IntExtension.swift */; };
 		BE8CC40219ABEF8D008F1D1D /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* PixelData.swift */; };
 		BEE9747D19A77B63006B1208 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9747C19A77B63006B1208 /* main.swift */; };
 		BEE9747F19A77B63006B1208 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9747E19A77B63006B1208 /* AppDelegate.swift */; };
@@ -47,7 +44,6 @@
 		BEE974AB19A7DFCA006B1208 /* UIImageFromBitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE974AA19A7DFCA006B1208 /* UIImageFromBitmap.swift */; };
 		BEE974AC19A7E50E006B1208 /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623417198DFE2100C0A592 /* PixelData.swift */; };
 		BEE974AD19A7E515006B1208 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE623415198D524000C0A592 /* DoubleExtension.swift */; };
-		BEE974AE19A7E519006B1208 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67FA83198E55420009D31E /* IntExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +85,6 @@
 		BE3A832319A6600D0037C740 /* ThreadsExperimentTests_OSX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsExperimentTests_OSX.swift; sourceTree = "<group>"; };
 		BE623415198D524000C0A592 /* DoubleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		BE623417198DFE2100C0A592 /* PixelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PixelData.swift; sourceTree = "<group>"; };
-		BE67FA83198E55420009D31E /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		BEE9747819A77B63006B1208 /* GrayScottOSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrayScottOSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEE9747B19A77B63006B1208 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEE9747C19A77B63006B1208 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -283,7 +278,6 @@
 			isa = PBXGroup;
 			children = (
 				BE623415198D524000C0A592 /* DoubleExtension.swift */,
-				BE67FA83198E55420009D31E /* IntExtension.swift */,
 			);
 			name = extensions;
 			path = ThreadsExperiment;
@@ -570,7 +564,6 @@
 			files = (
 				BE0E5C6D198CA26700395741 /* ViewController.swift in Sources */,
 				BE623418198DFE2100C0A592 /* PixelData.swift in Sources */,
-				BE67FA84198E55420009D31E /* IntExtension.swift in Sources */,
 				BE623416198D524000C0A592 /* DoubleExtension.swift in Sources */,
 				BEE974AB19A7DFCA006B1208 /* UIImageFromBitmap.swift in Sources */,
 				3E7AECD81997E5FE00EFC5EC /* Constants.swift in Sources */,
@@ -599,7 +592,6 @@
 				BE3A831219A651940037C740 /* ThreadsExperimentUnitTests.swift in Sources */,
 				BE3A831819A652820037C740 /* GrayScottStruct.swift in Sources */,
 				BE3A831619A651B60037C740 /* GrayScottSolver.swift in Sources */,
-				BE3A831919A65D180037C740 /* IntExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,7 +601,6 @@
 			files = (
 				BE4069DF19ABFC880023AAA4 /* PixelData.swift in Sources */,
 				BE3A832919A660760037C740 /* DoubleExtension.swift in Sources */,
-				BE3A832A19A6607A0037C740 /* IntExtension.swift in Sources */,
 				BE3A832B19A6607E0037C740 /* GrayScottSolver.swift in Sources */,
 				BE3A832419A6600D0037C740 /* ThreadsExperimentTests_OSX.swift in Sources */,
 				BE3A832819A660710037C740 /* GrayScottStruct.swift in Sources */,
@@ -623,7 +614,6 @@
 				BEE974A819A7DF1C006B1208 /* NSImageFromBitmap.swift in Sources */,
 				BEE974AC19A7E50E006B1208 /* PixelData.swift in Sources */,
 				BEE9747F19A77B63006B1208 /* AppDelegate.swift in Sources */,
-				BEE974AE19A7E519006B1208 /* IntExtension.swift in Sources */,
 				BEE974AD19A7E515006B1208 /* DoubleExtension.swift in Sources */,
 				BEE974A419A7A57E006B1208 /* GSWindowController.swift in Sources */,
 				BEE974A519A7DDBA006B1208 /* GrayScottSolver.swift in Sources */,
