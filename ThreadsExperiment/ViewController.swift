@@ -16,7 +16,7 @@ class ViewController: UIViewController
     @IBOutlet var parameterButtonBar: UISegmentedControl!
     @IBOutlet var parameterValueLabel: UILabel!
     
-    var parameters = GrayScottParmeters(f: 0.023, k: 0.0795, dU: 0.16, dV: 0.08)
+    var parameters = GrayScottParameters(f: 0.023, k: 0.0795, dU: 0.16, dV: 0.08)
 
     var grayScottData:[GrayScottStruct] = {
         
@@ -38,24 +38,13 @@ class ViewController: UIViewController
                 }
             }
             return data
-        }() {
-        didSet {
-            dispatchRender()
-        }
-    }
+        }()
 
     override func viewDidLoad()
     {
         
-        let timer = NSTimer.scheduledTimerWithTimeInterval(0.025, target: self, selector: Selector("timerHandler"), userInfo: nil, repeats: true);
-        
         updateLabel();
         dispatchSolverOperation()
-    }
-
-    func timerHandler()
-    {
-        //self.dispatchSolverOperation()
     }
     
     @IBAction func sliderValueChangeHandler(sender: AnyObject)
@@ -104,54 +93,38 @@ class ViewController: UIViewController
         }
     }
     
-    private var lastFrameCountTime = NSDate()
-    private var frameCount = 0
-    private var solveCount = 0
     private final func dispatchSolverOperation()
     {
-        let dataCopy = grayScottData
+        var lastFrameCountTime = CFAbsoluteTimeGetCurrent()
+        var frameCount = 0
+        var solveCount:Int32 = 0
+        var waitingFrames:Int32 = 0
+        var data = grayScottData
         let params = parameters
         weak var weakSelf = self
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            let newGSData = grayScottSolver(dataCopy, params)
-            dispatch_async(dispatch_get_main_queue()) {
+            while (true) {
+                var pixelData:[PixelData]
+                (data, pixelData) = grayScottSolver(data, params)
+                let dataCopy = data
                 if let s = weakSelf {
-                    ++s.solveCount
-                    s.grayScottData = newGSData
-                    s.dispatchSolverOperation()
-                }
-            }
-        }
-    }
-    private var renderedCount = 0
-    private var skippedCount = 0
-    private var isRendering = false
-    private final func dispatchRender() {
-        if isRendering {
-            ++skippedCount
-            //if skippedCount % 256 == 0 {
-                println("Rendering bottleneck, render skipped. Skipped:\(skippedCount) Rendered: \(renderedCount) Skipped: \(100 * skippedCount / (skippedCount + renderedCount))")
-            //}
-            return
-        }
-        ++renderedCount
-        isRendering = true
-        let gsData = self.grayScottData
-        weak var weakSelf = self
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            let newImage = renderGrayScott(gsData)
-            dispatch_async(dispatch_get_main_queue()) {
-                if let s = weakSelf {
-                    s.isRendering = false
-                    s.imageView.image = newImage
-                    if s.lastFrameCountTime.timeIntervalSinceNow < -1.0 {
-                        println("Frame count = \(s.frameCount) Solve count: \(s.solveCount)")
-                        s.frameCount = 0
-                        s.solveCount = 0
-                        s.lastFrameCountTime = NSDate()
-                    }
-                    ++s.frameCount
-                    
+                    OSAtomicIncrement32(&solveCount)
+                    OSAtomicIncrement32(&waitingFrames)
+                    if waitingFrames < 3 {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            
+                            s.grayScottData = data
+                            s.imageView.image = imageFromARGB32Bitmap(pixelData, UInt(Constants.LENGTH), UInt(Constants.LENGTH))
+                            if CFAbsoluteTimeGetCurrent() - lastFrameCountTime > 1.0 {
+                                println("Frame count = \(frameCount) Solve count: \(solveCount)")
+                                frameCount = 0
+                                solveCount = 0
+                                lastFrameCountTime = CFAbsoluteTimeGetCurrent()
+                            }
+                            ++frameCount
+                            OSAtomicDecrement32(&waitingFrames)
+                        }
+                    } else { OSAtomicDecrement32(&waitingFrames) }
                 }
             }
         }

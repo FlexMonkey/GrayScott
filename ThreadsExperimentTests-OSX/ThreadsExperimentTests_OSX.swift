@@ -13,11 +13,11 @@
 //  Created by Joseph on 21/08/2014.
 //  Copyright (c) 2014 Simon Gladman. All rights reserved.
 //
-
+public let solverQueues = 8
 import Foundation
 import XCTest
 
-let gsParams = GrayScottParmeters(f: 0.023, k: 0.0795, dU: 0.16, dV: 0.08)
+let gsParams = GrayScottParameters(f: 0.023, k: 0.0795, dU: 0.16, dV: 0.08)
 
 public struct Constants
 {
