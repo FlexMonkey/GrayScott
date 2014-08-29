@@ -50,7 +50,7 @@ public func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:Gr
     dispatch_group_wait(dispatchGroup, DISPATCH_TIME_FOREVER)
     
     if stats {
-        println("S  SOLVER:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime!));
+        println("S  SOLVER:" + NSString(format: "%.6f", CFAbsoluteTimeGetCurrent() - startTime!));
     }
     ++solverstatsCount
     
