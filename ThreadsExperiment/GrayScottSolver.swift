@@ -40,16 +40,14 @@ public func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:Gr
     let sectionSize:Int = Constants.LENGTH/solverQueues
     var sectionIndexes = map(0...solverQueues) { Int($0 * sectionSize) }
     sectionIndexes[solverQueues] = Constants.LENGTH
-    
+    let dispatchGroup = dispatch_group_create()
     for i in 0..<solverQueues {
-            dispatch_async(queue) {
+            dispatch_group_async(dispatchGroup, queue) {
             grayScottPartialSolver(grayScottConstData, parameters, sectionIndexes[i], sectionIndexes[i + 1], &outputArray, &outputPixels)
             dispatch_semaphore_signal(semaphore)
         }
     }
-    for i in 0..<solverQueues {
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
-    }
+    dispatch_group_wait(dispatchGroup, DISPATCH_TIME_FOREVER)
     
     if stats {
         println("S  SOLVER:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime!));
