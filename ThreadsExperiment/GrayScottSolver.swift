@@ -81,7 +81,11 @@ private func grayScottPartialSolver(grayScottConstData: [GrayScottStruct], param
             let deltaU : Double = parameters.dU * laplacianU - reactionRate + parameters.f * (1.0 - thisPixel.u);
             let deltaV : Double = parameters.dV * laplacianV + reactionRate - parameters.k * thisPixel.v;
             
-            let outputDataCell = GrayScottStruct(u: (thisPixel.u + deltaU).clip(), v: (thisPixel.v + deltaV).clip())
+            let u = thisPixel.u + deltaU
+            let clipped_u = u < 0 ? 0 : u < 1.0 ? u : 1.0
+            let v = thisPixel.v + deltaV
+            let clipped_v = v < 0 ? 0 : v < 1.0 ? v : 1.0
+            let outputDataCell = GrayScottStruct(u: clipped_u, v: clipped_v)
             
             let u_I = UInt8(outputDataCell.u * 255)
             outputPixels[index].r = u_I
