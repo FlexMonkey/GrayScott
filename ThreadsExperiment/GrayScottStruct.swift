@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct GrayScottStruct {
+public struct GrayScottStruct {
     var u : Double = 0.0;
     var v : Double = 0.0;
     

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="GSWindowController" customModule="GrayScottOSX" customModuleProvider="target">
+            <connections>
+                <outlet property="imageView" destination="pMz-dB-huc" id="851-qE-iru"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="805" height="692"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
+            <view key="contentView" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="805" height="692"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pMz-dB-huc">
+                        <rect key="frame" x="0.0" y="-27" width="805" height="746"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="Gy6-4f-JnO"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="pMz-dB-huc" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="V5s-ak-gKW"/>
+                    <constraint firstItem="pMz-dB-huc" firstAttribute="centerY" secondItem="EiT-Mj-1SZ" secondAttribute="centerY" id="WQG-W9-SMm"/>
+                    <constraint firstAttribute="trailing" secondItem="pMz-dB-huc" secondAttribute="trailing" id="lDa-Cc-VEP"/>
+                    <constraint firstItem="pMz-dB-huc" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="-27" id="wxe-w8-tUS"/>
+                </constraints>
+            </view>
+            <point key="canvasLocation" x="354.5" y="727"/>
+        </window>
+    </objects>
+</document>

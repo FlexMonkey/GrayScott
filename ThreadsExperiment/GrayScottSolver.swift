@@ -12,30 +12,71 @@
 //
 
 import Foundation
-import UIKit
 
-struct GrayScottParmeters {
-    var f : Double
-    var k : Double
-    var dU : Double
-    var dV : Double
+public struct GrayScottParameters {
+    public var f : Double
+    public var k : Double
+    public var dU : Double
+    public var dV : Double
 }
 
-
-func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:GrayScottParmeters)->[GrayScottStruct] {
-    let startTime : CFAbsoluteTime = CFAbsoluteTimeGetCurrent();
+private var solverstatsCount = 0
+public func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:GrayScottParameters)->([GrayScottStruct],[PixelData]) {
     
-    var index : Int = 0;
-    var outputArray = grayScottConstData // Copy to get array big enough
-    for i in 0 ..< Constants.LENGTH
+    let stats = solverstatsCount % 1024 == 0
+    var startTime : CFAbsoluteTime?
+    if stats {
+        startTime = CFAbsoluteTimeGetCurrent();
+    }
+    
+    let semaphore = dispatch_semaphore_create(0)
+    //var queues
+    var outputArray = [GrayScottStruct](count: grayScottConstData.count, repeatedValue: GrayScottStruct(u: 0, v: 0))
+    var outputPixels = [PixelData](count: grayScottConstData.count, repeatedValue: PixelData(a: 255, r:0, g: 0, b: 0))
+    
+    //let queue = dispatch_queue_create("com.humanfriendly.grayscottsolver",  DISPATCH_QUEUE_CONCURRENT)
+    let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+    
+    let sectionSize:Int = Constants.LENGTH/solverQueues
+    var sectionIndexes = map(0...solverQueues) { Int($0 * sectionSize) }
+    sectionIndexes[solverQueues] = Constants.LENGTH
+    let dispatchGroup = dispatch_group_create()
+    for i in 0..<solverQueues {
+            dispatch_group_async(dispatchGroup, queue) {
+            grayScottPartialSolver(grayScottConstData, parameters, sectionIndexes[i], sectionIndexes[i + 1], &outputArray, &outputPixels)
+            dispatch_semaphore_signal(semaphore)
+        }
+    }
+    dispatch_group_wait(dispatchGroup, DISPATCH_TIME_FOREVER)
+    
+    if stats {
+        println("S  SOLVER:" + NSString(format: "%.6f", CFAbsoluteTimeGetCurrent() - startTime!));
+    }
+    ++solverstatsCount
+    
+    return (outputArray, outputPixels)
+}
+
+private func grayScottPartialSolver(grayScottConstData: [GrayScottStruct], parameters: GrayScottParameters, startLine:Int, endLine:Int, inout outputArray: [GrayScottStruct], inout outputPixels:[PixelData]) {
+    
+    assert(startLine >= 0)
+    assert(endLine <= Constants.LENGTH)
+    assert(outputArray.count == Constants.LENGTH_SQUARED)
+    assert(grayScottConstData.count == Constants.LENGTH_SQUARED)
+    for i in startLine ..< endLine
     {
+        let top = 0 == i
+        let bottom = Constants.LENGTH_MINUS_ONE == i
         for j in 0 ..< Constants.LENGTH
         {
-            let thisPixel = grayScottConstData[i * Constants.LENGTH + j]
-            let northPixel = grayScottConstData[i * Constants.LENGTH + (j + 1).wrap(Constants.LENGTH_MINUS_ONE)]
-            let southPixel = grayScottConstData[i * Constants.LENGTH + (j - 1).wrap(Constants.LENGTH_MINUS_ONE)]
-            let eastPixel = grayScottConstData[(i - 1).wrap(Constants.LENGTH_MINUS_ONE) * Constants.LENGTH + j]
-            let westPixel = grayScottConstData[(i + 1).wrap(Constants.LENGTH_MINUS_ONE) * Constants.LENGTH + j]
+            let left = j == 0
+            let right = j == Constants.LENGTH_MINUS_ONE
+            let index = i * Constants.LENGTH + j
+            let thisPixel = grayScottConstData[index]
+            let eastPixel = grayScottConstData[index + (right ? -j : 1)]
+            let westPixel = grayScottConstData[index + (left ? Constants.LENGTH_MINUS_ONE : -1)]
+            let northPixel = grayScottConstData[top ? Constants.LENGTH_SQUARED - Constants.LENGTH + j : index - Constants.LENGTH]
+            let southPixel = grayScottConstData[bottom ? j : index + Constants.LENGTH]
             
             let laplacianU = northPixel.u + southPixel.u + westPixel.u + eastPixel.u - (4.0 * thisPixel.u);
             let laplacianV = northPixel.v + southPixel.v + westPixel.v + eastPixel.v - (4.0 * thisPixel.v);
@@ -44,16 +85,15 @@ func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:GrayScott
             let deltaU : Double = parameters.dU * laplacianU - reactionRate + parameters.f * (1.0 - thisPixel.u);
             let deltaV : Double = parameters.dV * laplacianV + reactionRate - parameters.k * thisPixel.v;
             
-            let outputPixel = GrayScottStruct(u: (thisPixel.u + deltaU).clip(), v: (thisPixel.v + deltaV).clip())
+            let outputDataCell = GrayScottStruct(u: (thisPixel.u + deltaU).clip(), v: (thisPixel.v + deltaV).clip())
             
-            //outputArray.append(outputPixel)
+            let u_I = UInt8(outputDataCell.u * 255)
+            outputPixels[index].r = u_I
+            outputPixels[index].g = u_I
+            outputPixels[index].b = UInt8(outputDataCell.v * 255)
             
-            outputArray[index++] = outputPixel;
+            
+            outputArray[index] = outputDataCell
         }
     }
-
-    
-    println("S  SOLVER:" + NSString(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime));
-    
-    return outputArray
 }

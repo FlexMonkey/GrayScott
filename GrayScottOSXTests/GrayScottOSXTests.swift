@@ -1,15 +1,15 @@
 //
-//  ThreadsExperimentTests.swift
-//  ThreadsExperimentTests
+//  GrayScottOSXTests.swift
+//  GrayScottOSXTests
 //
-//  Created by Simon Gladman on 02/08/2014.
+//  Created by Joseph on 22/08/2014.
 //  Copyright (c) 2014 Simon Gladman. All rights reserved.
 //
 
-import UIKit
+import Cocoa
 import XCTest
-public let solverQueues = 8
-class ThreadsExperimentTests: XCTestCase {
+
+class GrayScottOSXTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

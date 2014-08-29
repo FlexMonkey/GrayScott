@@ -15,23 +15,21 @@ class ViewController: UIViewController
     @IBOutlet var parameterSlider: UISlider!
     @IBOutlet var parameterButtonBar: UISegmentedControl!
     @IBOutlet var parameterValueLabel: UILabel!
-
-
     
-    var f : Double = 0.023;
-    var k : Double = 0.0795;
-    var dU : Double = 0.16;
-    var dV : Double = 0.08;
+    var parameters = GrayScottParameters(f: 0.023, k: 0.0795, dU: 0.16, dV: 0.08)
 
     var grayScottData:[GrayScottStruct] = {
+        
             var data = [GrayScottStruct]()
             for i in 0..<Constants.LENGTH_SQUARED
             {
                 data.append(GrayScottStruct(u:1.0, v:0.0))
             }
-            for i in 25 ..< 45
+            let t0 = Constants.LENGTH * 5 / 14
+            let t1 = Constants.LENGTH - t0
+            for i in t0 ..< t1
             {
-                for j in 25 ..< 45
+                for j in t0 ..< t1
                 {
                     if arc4random() % 100 > 5
                     {
@@ -42,19 +40,11 @@ class ViewController: UIViewController
             return data
         }()
 
-
     override func viewDidLoad()
     {
         
-        let timer = NSTimer.scheduledTimerWithTimeInterval(0.025, target: self, selector: Selector("timerHandler"), userInfo: nil, repeats: true);
-        
         updateLabel();
         dispatchSolverOperation()
-    }
-
-    func timerHandler()
-    {
-        //self.dispatchSolverOperation()
     }
     
     @IBAction func sliderValueChangeHandler(sender: AnyObject)
@@ -62,15 +52,15 @@ class ViewController: UIViewController
         switch parameterButtonBar.selectedSegmentIndex
         {
             case 0:
-                f = Double(parameterSlider.value);
+                parameters.f = Double(parameterSlider.value);
             case 1:
-                k = Double(parameterSlider.value);
+                parameters.k = Double(parameterSlider.value);
             case 2:
-                dU = Double(parameterSlider.value);
+                parameters.dU = Double(parameterSlider.value);
             case 3:
-                dV = Double(parameterSlider.value);
+                parameters.dV = Double(parameterSlider.value);
             default:
-                f = Double(parameterSlider.value);
+                parameters.f = Double(parameterSlider.value);
         }
         
         updateLabel();
@@ -87,34 +77,55 @@ class ViewController: UIViewController
         switch parameterButtonBar.selectedSegmentIndex
         {
             case 0:
-                parameterValueLabel.text = "f = " + f.format();
-                parameterSlider.value = Float(f);
+                parameterValueLabel.text = "f = " + parameters.f.format()
+                parameterSlider.value = Float(parameters.f)
             case 1:
-                parameterValueLabel.text = "k = " + k.format();
-                parameterSlider.value = Float(k);
+                parameterValueLabel.text = "k = " + parameters.k.format()
+                parameterSlider.value = Float(parameters.k)
             case 2:
-                parameterValueLabel.text = "Du = " + dU.format();
-                parameterSlider.value = Float(dU);
+                parameterValueLabel.text = "Du = " + parameters.dU.format()
+                parameterSlider.value = Float(parameters.dU)
             case 3:
-                parameterValueLabel.text = "Dv = " + dV.format();
-                parameterSlider.value = Float(dV);
+                parameterValueLabel.text = "Dv = " + parameters.dV.format()
+                parameterSlider.value = Float(parameters.dV)
             default:
                 parameterValueLabel.text = "";
         }
     }
     
-    
-    private func dispatchSolverOperation()
+    private final func dispatchSolverOperation()
     {
-        let dataCopy = grayScottData
-        let params = GrayScottParmeters(f: f, k: k, dU: dU, dV: dV)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-            let newGSData = grayScottSolver(dataCopy, params)
-            let newImage = renderGrayScott(newGSData)
-            dispatch_async(dispatch_get_main_queue()) {
-                self.grayScottData = newGSData
-                self.imageView.image = newImage
-                self.dispatchSolverOperation()
+        var lastFrameCountTime = CFAbsoluteTimeGetCurrent()
+        var frameCount = 0
+        var solveCount:Int32 = 0
+        var waitingFrames:Int32 = 0
+        var data = grayScottData
+        let params = parameters
+        weak var weakSelf = self
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            while (true) {
+                var pixelData:[PixelData]
+                (data, pixelData) = grayScottSolver(data, params)
+                let dataCopy = data
+                if let s = weakSelf {
+                    OSAtomicIncrement32(&solveCount)
+                    OSAtomicIncrement32(&waitingFrames)
+                    if waitingFrames < 3 {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            
+                            s.grayScottData = data
+                            s.imageView.image = imageFromARGB32Bitmap(pixelData, UInt(Constants.LENGTH), UInt(Constants.LENGTH))
+                            if CFAbsoluteTimeGetCurrent() - lastFrameCountTime > 1.0 {
+                                println("Frame count = \(frameCount) Solve count: \(solveCount)")
+                                frameCount = 0
+                                solveCount = 0
+                                lastFrameCountTime = CFAbsoluteTimeGetCurrent()
+                            }
+                            ++frameCount
+                            OSAtomicDecrement32(&waitingFrames)
+                        }
+                    } else { OSAtomicDecrement32(&waitingFrames) }
+                }
             }
         }
     }
