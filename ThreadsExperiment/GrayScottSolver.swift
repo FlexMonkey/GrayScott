@@ -28,13 +28,10 @@ public func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:Gr
     if stats {
         startTime = CFAbsoluteTimeGetCurrent();
     }
-    
-    let semaphore = dispatch_semaphore_create(0)
-    //var queues
+
     var outputArray = [GrayScottStruct](count: grayScottConstData.count, repeatedValue: GrayScottStruct(u: 0, v: 0))
     var outputPixels = [PixelData](count: grayScottConstData.count, repeatedValue: PixelData(a: 255, r:0, g: 0, b: 0))
     
-    //let queue = dispatch_queue_create("com.humanfriendly.grayscottsolver",  DISPATCH_QUEUE_CONCURRENT)
     let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
     
     let sectionSize:Int = Constants.LENGTH/solverQueues
@@ -44,7 +41,6 @@ public func grayScottSolver(grayScottConstData: [GrayScottStruct], parameters:Gr
     for i in 0..<solverQueues {
             dispatch_group_async(dispatchGroup, queue) {
             grayScottPartialSolver(grayScottConstData, parameters, sectionIndexes[i], sectionIndexes[i + 1], &outputArray, &outputPixels)
-            dispatch_semaphore_signal(semaphore)
         }
     }
     dispatch_group_wait(dispatchGroup, DISPATCH_TIME_FOREVER)
@@ -85,7 +81,11 @@ private func grayScottPartialSolver(grayScottConstData: [GrayScottStruct], param
             let deltaU : Double = parameters.dU * laplacianU - reactionRate + parameters.f * (1.0 - thisPixel.u);
             let deltaV : Double = parameters.dV * laplacianV + reactionRate - parameters.k * thisPixel.v;
             
-            let outputDataCell = GrayScottStruct(u: (thisPixel.u + deltaU).clip(), v: (thisPixel.v + deltaV).clip())
+            let u = thisPixel.u + deltaU
+            let clipped_u = u < 0 ? 0 : u < 1.0 ? u : 1.0
+            let v = thisPixel.v + deltaV
+            let clipped_v = v < 0 ? 0 : v < 1.0 ? v : 1.0
+            let outputDataCell = GrayScottStruct(u: clipped_u, v: clipped_v)
             
             let u_I = UInt8(outputDataCell.u * 255)
             outputPixels[index].r = u_I
