@@ -16,36 +16,46 @@ class ViewController: UIViewController
     @IBOutlet var parameterButtonBar: UISegmentedControl!
     @IBOutlet var parameterValueLabel: UILabel!
     
+    var resetFlag : Bool = true;
+    
     var parameters = GrayScottParameters(f: 0.023, k: 0.0795, dU: 0.16, dV: 0.08)
 
-    var grayScottData:[GrayScottStruct] = {
-        
-            var data = [GrayScottStruct]()
-            for i in 0..<Constants.LENGTH_SQUARED
+    var grayScottData:[GrayScottStruct] = ViewController.resetGrayScottData();
+    
+    class func resetGrayScottData() -> [GrayScottStruct]
+    {
+        var data = [GrayScottStruct]()
+        for i in 0..<Constants.LENGTH_SQUARED
+        {
+            data.append(GrayScottStruct(u:1.0, v:0.0))
+        }
+        let t0 = Constants.LENGTH * 5 / 14
+        let t1 = Constants.LENGTH - t0
+        for i in t0 ..< t1
+        {
+            for j in t0 ..< t1
             {
-                data.append(GrayScottStruct(u:1.0, v:0.0))
-            }
-            let t0 = Constants.LENGTH * 5 / 14
-            let t1 = Constants.LENGTH - t0
-            for i in t0 ..< t1
-            {
-                for j in t0 ..< t1
+                if arc4random() % 100 > 5
                 {
-                    if arc4random() % 100 > 5
-                    {
-                        data[i * Constants.LENGTH + j] = GrayScottStruct(u: 0.5, v: 0.25);
-                    }
+                    data[i * Constants.LENGTH + j] = GrayScottStruct(u: 0.5, v: 0.25);
                 }
             }
-            return data
-        }()
+        }
 
+        return data;
+    }
+    
     override func viewDidLoad()
     {
-        
         updateLabel();
         dispatchSolverOperation()
     }
+    
+    @IBAction func resetButtonClickHandler(sender: AnyObject)
+    {
+        resetFlag = true;
+    }
+    
     
     @IBAction func sliderValueChangeHandler(sender: AnyObject)
     {
@@ -100,10 +110,18 @@ class ViewController: UIViewController
         var solveCount:Int32 = 0
         var waitingFrames:Int32 = 0
         var data = grayScottData
-        let params = parameters
         weak var weakSelf = self
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             while (true) {
+                
+                if(self.resetFlag)
+                {
+                    self.resetFlag = false
+                    self.grayScottData = ViewController.resetGrayScottData()
+                    data = self.grayScottData
+                }
+                
+                let params = self.parameters;
                 var pixelData:[PixelData]
                 (data, pixelData) = grayScottSolver(data, params)
                 let dataCopy = data
@@ -116,7 +134,7 @@ class ViewController: UIViewController
                             s.grayScottData = data
                             s.imageView.image = imageFromARGB32Bitmap(pixelData, UInt(Constants.LENGTH), UInt(Constants.LENGTH))
                             if CFAbsoluteTimeGetCurrent() - lastFrameCountTime > 1.0 {
-                                println("Frame count = \(frameCount) Solve count: \(solveCount)")
+                                println("Frame count = \(frameCount) Solve count: \(solveCount))")
                                 frameCount = 0
                                 solveCount = 0
                                 lastFrameCountTime = CFAbsoluteTimeGetCurrent()

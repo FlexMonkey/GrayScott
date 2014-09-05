@@ -59,6 +59,7 @@ private func grayScottPartialSolver(grayScottConstData: [GrayScottStruct], param
     assert(endLine <= Constants.LENGTH)
     assert(outputArray.count == Constants.LENGTH_SQUARED)
     assert(grayScottConstData.count == Constants.LENGTH_SQUARED)
+    
     for i in startLine ..< endLine
     {
         let top = 0 == i
